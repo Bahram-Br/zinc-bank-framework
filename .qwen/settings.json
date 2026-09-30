@@ -1,0 +1,23 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ],
+      "env": {}
+    },
+    "zinctm": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest",
+        "--init-page",
+        ".qwen/mcp-init-zinctm.ts"
+      ],
+      "env": {}
+    }
+  },
+  "$version": 4
+}

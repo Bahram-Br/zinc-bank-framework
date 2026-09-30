@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment / secrets - NEVER commit these
+.env
+
+# Playwright browser downloads
+playwright-report/
+test-results/
+
+# Reports and screenshots (keep the directory placeholder files)
+reports/*
+!reports/.gitkeep
+screenshots/*
+!screenshots/.gitkeep
+
+# Logs
+*.log
+npm-debug.log*

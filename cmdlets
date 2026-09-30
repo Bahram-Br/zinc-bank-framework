@@ -1,0 +1,13 @@
+npm install
+
+npx playwright install
+
+npm test
+
+npm run test:headed
+
+#Other commands
+npm run test:firefox          # different browser
+npm run typecheck             # TypeScript errors only, no browser
+npx cucumber-js --tags "@smoke"   # if you add tags later
+npx cucumber-js features/login.feature   # one feature file
