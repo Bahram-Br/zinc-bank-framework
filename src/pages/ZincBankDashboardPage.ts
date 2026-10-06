@@ -5,5 +5,5 @@ export class ZincBankDashboardPage {
 
     constructor(readonly page: Page) {
         this.pageTitle = this.page.locator('[data-testid="dashboard-welcome"]');
-        this.pageTitle = this.pageTitle.locator('text=Welcome, there'); }
+    }
 }

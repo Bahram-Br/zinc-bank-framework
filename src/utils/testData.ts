@@ -1,6 +1,20 @@
 import { config } from '../config/config';
 
 /**
+ * Read a credential only when a scenario asks for it.
+ * Missing values fail that scenario instead of falling back to a password in source.
+ */
+function requiredEnv(name: string): string {
+  const value = process.env[name]?.trim();
+  if (!value) {
+    throw new Error(
+      `Missing ${name}. Set it in .env locally, or as a GitHub Actions secret in CI.`,
+    );
+  }
+  return value;
+}
+
+/**
  * Central place for test data used across scenarios.
  *
  * Values come from environment variables (see `.env`) so that real
@@ -13,8 +27,12 @@ export const testData = {
   },
 
   zincTM: {
-    username: process.env.ZINCTM_USERNAME || 'brr113114@gmail.com',
-    password: process.env.ZINCTM_PASSWORD || 'Bb012185@',
+    get username(): string {
+      return requiredEnv('ZINCTM_USERNAME');
+    },
+    get password(): string {
+      return requiredEnv('ZINCTM_PASSWORD');
+    },
   },
 
   owner: {

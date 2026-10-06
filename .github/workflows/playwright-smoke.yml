@@ -25,6 +25,9 @@ jobs:
           BASE_URL: ${{ secrets.BASE_URL }}
           VALID_USERNAME: ${{ secrets.VALID_USERNAME }}
           VALID_PASSWORD: ${{ secrets.VALID_PASSWORD }}
+          ZINCTM_BASE_URL: ${{ secrets.ZINCTM_BASE_URL }}
+          ZINCTM_USERNAME: ${{ secrets.ZINCTM_USERNAME }}
+          ZINCTM_PASSWORD: ${{ secrets.ZINCTM_PASSWORD }}
         run: npm test -- --tags "@smoke"
 
       - name: Upload report

@@ -13,8 +13,9 @@ for the common task: sign in → analyze/rewrite a requirement → create a test
 case so the requirement counts as covered.
 
 ## Sign in
-Credentials live in `src/utils/testData.ts` under the `zincTM` object
-(`ZINCTM_USERNAME` / `ZINCTM_PASSWORD` env vars with fallbacks). The login page
+Credentials are read from `ZINCTM_USERNAME` / `ZINCTM_PASSWORD` when a scenario
+asks for them (`src/utils/testData.ts`). A missing value fails that scenario.
+The login page
 has test-ids `login-email`, `login-password`, `login-submit`. After submit you
 land on `/dashboard`.
 

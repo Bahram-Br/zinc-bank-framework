@@ -17,7 +17,7 @@ export class ZincTMLoginPage {
   readonly errorMessage: Locator;
 
   constructor(private readonly page: Page) {
-    this.usernameInput = this.page.locator('[data-testid="login-email-input"]');
+    this.usernameInput = this.page.locator('[data-testid="login-email"]');
     this.passwordInput = this.page.locator('[data-testid="login-password"]');
     this.loginButton = this.page.locator('[data-testid="login-submit"]');
     this.errorMessage = this.page.locator('[data-testid="login-error"]');

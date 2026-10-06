@@ -1,8 +1,8 @@
 # Zinc Bank Framework
 UI automation for the [Zinc Bank](https://zincbank.cydeo.io/login) practice app. Built with **Playwright**, **Cucumber.js**, and **TypeScript** using the Page Object Model (POM).
 Playwright + Cucumber.js + TypeScript UI automation for Zinc Bank, using the Page Object Model.
-This is a focused teaching / interview portfolio slice—not an enterprise suite. Today it covers two Zinc Bank login scenarios (happy path + invalid credentials). ZincTM page objects exist but are not wired into features yet.
-Current coverage: two scenarios in `features/step-definitions/zincbank.feature` (valid login → dashboard, invalid login → error). ZincTM page objects live under `src/pages/` but have no feature scenarios yet.
+This is a focused teaching / interview portfolio slice—not an enterprise suite. Today it covers two Zinc Bank login scenarios (happy path + invalid credentials) plus one ZincTM login scenario.
+Current coverage: two scenarios in `features/step-definitions/zincbank.feature` (valid login → dashboard, invalid login → error), and one scenario in `features/step-definitions/zinctm.feature` (valid login → dashboard).
 ## Stack
 | Layer | Choice |
 |-------|--------|
@@ -35,8 +35,8 @@ For the current Zinc Bank login scenarios:
 | `BASE_URL` | No | Defaults in `src/config/config.ts` if empty |
 | `BROWSER` | No | Default `chromium` (`firefox` / `webkit` also supported) |
 | `HEADLESS` | No | Default `true`; set `false` for headed |
-| `ZINCTM_BASE_URL` | No | For ZincTM (not used by current feature) |
-| `ZINCTM_USERNAME` / `ZINCTM_PASSWORD` | No | Fail-fast only if a ZincTM scenario reads them |
+| `ZINCTM_BASE_URL` | No | Defaults in `src/config/config.ts` if empty |
+| `ZINCTM_USERNAME` / `ZINCTM_PASSWORD` | Yes, for `@zinctm` | Fail-fast when that scenario reads them |
 | `OWNER_USERNAME` / `OWNER_PASSWORD` | No | Optional owner account |
 | Variable | Purpose |
 |----------|---------|
@@ -49,7 +49,7 @@ For the current Zinc Bank login scenarios:
 | `BROWSER` | `chromium` (default), `firefox`, or `webkit` |
 | `HEADLESS` | `true` (default) or `false` for a visible browser |
 | `ZINCTM_BASE_URL` | ZincTM practice site URL |
-| `ZINCTM_USERNAME` / `ZINCTM_PASSWORD` | ZincTM credentials (needed when ZincTM scenarios are added) |
+| `ZINCTM_USERNAME` / `ZINCTM_PASSWORD` | ZincTM credentials. Required by `@zinctm`; the scenario throws if either is empty |
 | `OWNER_USERNAME` / `OWNER_PASSWORD` | Optional owner account |
 `.env.example` lists every key with empty placeholders. Real credentials belong only in a local `.env` or CI secret store.
 ## How to run
