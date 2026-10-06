@@ -10,6 +10,7 @@ dist/
 # Playwright browser downloads
 playwright-report/
 test-results/
+.playwright-mcp/
 
 # Reports and screenshots (keep the directory placeholder files)
 reports/*
