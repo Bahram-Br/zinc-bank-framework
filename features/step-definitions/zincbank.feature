@@ -14,7 +14,7 @@ Feature: zinc bank login and dashboard
         Then I should see an error message indicating invalid login
 
     @ztm1
-    Scenario: Move money from checking to savings account successfully
+    Scenario: Transfer above available balance is rejected with INSUFFICIENT_FUNDS
         Given I am on the zinc bank login page
         When I login to zinc bank with username "casey@zinc.test" and password "Passw0rd!"
         And I note the checking account balance and the savings account balance
