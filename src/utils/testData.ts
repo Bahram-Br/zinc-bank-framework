@@ -22,17 +22,12 @@ function requiredEnv(name: string): string {
  */
 export const testData = {
   zincBank: {
-<<<<<<< HEAD
-    username: process.env.VALID_USERNAME || 'casey@zinc.test',
-    password: process.env.VALID_PASSWORD || 'Passw0rd!',
-=======
     get username(): string {
       return requiredEnv('VALID_USERNAME');
     },
     get password(): string {
       return requiredEnv('VALID_PASSWORD');
     },
->>>>>>> e2a0ffec9eb1d3bf89c059041b23537d728566b8
   },
 
   zincTM: {
@@ -45,7 +40,6 @@ export const testData = {
   },
 
   owner: {
-    owner: {
     get username(): string {
       return requiredEnv('OWNER_USERNAME');
     },
