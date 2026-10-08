@@ -6,6 +6,7 @@ dist/
 
 # Environment / secrets - NEVER commit these
 .env
+cmdlets
 
 # Playwright browser downloads
 playwright-report/
