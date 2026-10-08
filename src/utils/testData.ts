@@ -40,9 +40,14 @@ export const testData = {
   },
 
   owner: {
-    username: process.env.OWNER_USERNAME || 'bb112233@student.com',
-    password: process.env.OWNER_PASSWORD || 'Bhrm112233',
-  }
+    owner: {
+    get username(): string {
+      return requiredEnv('OWNER_USERNAME');
+    },
+    get password(): string {
+      return requiredEnv('OWNER_PASSWORD');
+    },
+  },
 };
 
 export type TestData = typeof testData;
