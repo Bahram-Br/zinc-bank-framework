@@ -5,6 +5,7 @@ import { testData } from "../../src/utils/testData";
 import { ZincBankLoginPage } from "../../src/pages/ZincBankLoginPage";
 import { ZincBankDashboardPage } from "../../src/pages/ZincBankDashboardPage";
 import { ZincBankMoveMoneyPage } from "../../src/pages/ZincBankMoveMoneyPage";
+import { ZincBankApplyPage } from "../../src/pages/ZIncBankApplyPage";
 
 Given("I am on the zinc bank login page", async function (this: CustomWorld) {
     const loginPage = new ZincBankLoginPage(this.page);
@@ -112,3 +113,59 @@ Then('I should see the accounts listed below', async function (this: CustomWorld
     }
 });
 
+// ZTM4: Signing up with an already-registered email is rejected
+Given('I am on the zinc bank sign-up page', async function (this: CustomWorld) {
+    const zincBankApplyPage = new ZincBankApplyPage(this.page);
+    this.zincBankApplyPage = zincBankApplyPage;
+    await zincBankApplyPage.goto();
+});
+
+When('I sign up as {string} {string} with email {string} and password {string}',
+     async function(this:CustomWorld, firstname: string, lastname:string, email: string, password: string){
+
+    await this.zincBankApplyPage.clickContinue();
+
+    await this.zincBankApplyPage.fillFirstName(firstname);
+    await this.zincBankApplyPage.fillLastName(lastname);
+    await this.zincBankApplyPage.fillEmail(email);
+    
+    await this.zincBankApplyPage.clickContinue();
+
+    await this.zincBankApplyPage.fillSsnNum();
+
+    await this.zincBankApplyPage.selfEmployeeOption();
+
+    await this.zincBankApplyPage.clickContinue();
+
+    await this.zincBankApplyPage.fillStreetInput('123 Main St');
+
+    await this.zincBankApplyPage.fillCityInput('Anytown');   
+    await this.zincBankApplyPage.selectStateOption('CA');
+    await this.zincBankApplyPage.fillZipcodeInput('12345');
+
+    await this.zincBankApplyPage.clickContinue();
+    
+    await this.zincBankApplyPage.fillNewPassword(password);
+    await this.zincBankApplyPage.confirmNewPassword(password);
+    
+    await this.zincBankApplyPage.clickContinue();
+
+    await this.zincBankApplyPage.clickTermsCheckbox();
+
+    await this.zincBankApplyPage.clickSubmit();
+
+
+});
+
+Then('I should see an error message indicating the email is already registered', async function (this: CustomWorld) {
+
+    const errorMessage = await this.zincBankApplyPage.errorMessage();
+    expect(errorMessage).toBe('An account with that email already exists');
+});
+
+Then('I should still be on the sign-up page', async function (this: CustomWorld) {
+
+    const currentUrl = this.page.url();
+    expect(currentUrl).toContain('/apply');
+    
+});

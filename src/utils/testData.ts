@@ -22,8 +22,8 @@ function requiredEnv(name: string): string {
  */
 export const testData = {
   zincBank: {
-    username: process.env.VALID_USERNAME || 'student01@zinc.test',
-    password: process.env.VALID_PASSWORD || '9pJolA7GBQec',
+    username: process.env.VALID_USERNAME || 'casey@zinc.test',
+    password: process.env.VALID_PASSWORD || 'Passw0rd!',
   },
 
   zincTM: {

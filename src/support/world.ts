@@ -5,6 +5,7 @@ import type { ZincTMLoginPage } from '../pages/ZincTMLoginPage';
 import type { ZincBankLoginPage } from '../pages/ZincBankLoginPage';
 import type { ZincBankDashboardPage } from '../pages/ZincBankDashboardPage';
 import type { ZincBankMoveMoneyPage } from '../pages/ZincBankMoveMoneyPage';
+import type { ZincBankApplyPage } from '../pages/ZIncBankApplyPage';
 
 /**
  * Custom Cucumber "World".
@@ -23,6 +24,7 @@ export class CustomWorld extends World {
   zincTMLoginPage!: ZincTMLoginPage;
   zincTMDashboardPage!: ZincTMDashboardPage;
   zincBankMoveMoneyPage!: ZincBankMoveMoneyPage;
+  zincBankApplyPage!: ZincBankApplyPage;
 
   /** Checking and savings account balances */
   checkingCents!: number;

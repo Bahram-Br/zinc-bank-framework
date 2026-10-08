@@ -1,5 +1,6 @@
 import{ Locator, Page } from "@playwright/test";
 import { config } from "../config/config";
+import { expect } from "@playwright/test";
 
 export class ZincBankLoginPage {
     
@@ -36,7 +37,9 @@ constructor(readonly page: Page) {
 
     async errorMessage(): Promise<string> {
         const errorMessageLocator = this.page.locator('[data-testid="login-error"]');
-        return await errorMessageLocator.textContent() || 'Invalid email or password.';
+        await expect(errorMessageLocator).toBeVisible();
+        
+        return (await errorMessageLocator.innerText()).trim();
     }
 
 }

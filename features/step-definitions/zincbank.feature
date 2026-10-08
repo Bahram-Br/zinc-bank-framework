@@ -31,3 +31,10 @@ Feature: zinc bank login and dashboard
             | Account Type | Account Number | Balance     |
             | Checking     | ••0001         | $8,992.44   |
             | Savings      | ••0002         | $25,000.00  |
+
+    @ztm4
+    Scenario: Signing up with an already-registered email is rejected
+        Given I am on the zinc bank sign-up page
+        When I sign up as "Casey" "Zinc" with email "casey@zinc.test" and password "NewPassw0rd!"
+        Then I should see an error message indicating the email is already registered
+        And I should still be on the sign-up page
