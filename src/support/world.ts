@@ -5,7 +5,7 @@ import type { ZincTMLoginPage } from '../pages/ZincTMLoginPage';
 import type { ZincBankLoginPage } from '../pages/ZincBankLoginPage';
 import type { ZincBankDashboardPage } from '../pages/ZincBankDashboardPage';
 import type { ZincBankMoveMoneyPage } from '../pages/ZincBankMoveMoneyPage';
-import type { ZincBankApplyPage } from '../pages/ZIncBankApplyPage';
+import type { ZincBankApplyPage } from '../pages/ZincBankApplyPage';
 
 /**
  * Custom Cucumber "World".

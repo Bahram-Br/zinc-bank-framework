@@ -5,7 +5,7 @@ import { testData } from "../../src/utils/testData";
 import { ZincBankLoginPage } from "../../src/pages/ZincBankLoginPage";
 import { ZincBankDashboardPage } from "../../src/pages/ZincBankDashboardPage";
 import { ZincBankMoveMoneyPage } from "../../src/pages/ZincBankMoveMoneyPage";
-import { ZincBankApplyPage } from "../../src/pages/ZIncBankApplyPage";
+import { ZincBankApplyPage } from "../../src/pages/ZincBankApplyPage";
 
 Given("I am on the zinc bank login page", async function (this: CustomWorld) {
     const loginPage = new ZincBankLoginPage(this.page);
