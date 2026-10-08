@@ -1,4 +1,4 @@
-import{ Given, When, Then } from "@cucumber/cucumber";
+import{ Given, When, Then, DataTable } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
 import{ CustomWorld } from "../../src/support/world";
 import { testData } from "../../src/utils/testData";
@@ -40,6 +40,7 @@ Then("I should see an error message indicating invalid login", async function (t
     expect(errorMessage).toContain("Invalid email or password.");
 });
 
+// ZTM1:Transfer above available balance is rejected with INSUFFICIENT_FUNDS
 // Helper function to convert a string like "$1,234.56" to cents (123456)
 function toCents(text: string): number {
     const match = text.match(/\$([0-9,]+)\.(\d{2})/);
@@ -87,5 +88,27 @@ Then('I should see the checking account balance and the savings account balance 
     const savingsNow = toCents(await this.zincBankMoveMoneyPage.savingsAccountText());
     expect(checkingNow).toBe(this.checkingCents);
     expect(savingsNow).toBe(this.savingsCents);
+});
+
+// ZTM6: Listed owned accounts are correct
+When('I open the accounts page', async function (this: CustomWorld) {
+    const moveMoneyPage = new ZincBankMoveMoneyPage(this.page);
+    this.zincBankMoveMoneyPage = moveMoneyPage;
+    await this.zincBankMoveMoneyPage.clickAccounts();
+});
+
+Then('I should see the accounts listed below', async function (this: CustomWorld, dataTable: DataTable) {
+    const expectedAccounts = dataTable.hashes();
+    const actualAccounts = this.page.locator('[data-testid^="accounts-card-"]');
+    
+    await expect(actualAccounts).toHaveCount(expectedAccounts.length);
+
+    for(let i = 0; i < expectedAccounts.length; i++) {
+        const text = await actualAccounts.nth(i).innerText();
+        
+        expect(text).toContain(expectedAccounts[i]['Account Type']);
+        expect(text).toContain(expectedAccounts[i]['Account Number']);
+        expect(text).toContain(expectedAccounts[i]['Balance']);
+    }
 });
 

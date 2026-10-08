@@ -1,6 +1,6 @@
 ---
 name: zinctm-web-workflow
-description: Drive the ZincTM web app via the zinctm MCP — sign in, rewrite a requirement's acceptance criteria, and create a linked test case to raise coverage
+description: Drive the ZincTM web app via the zinctm MCP — sign in, rewrite a requirement's acceptance criteria, create a linked test case, and link an automation script to a test case
 source: auto-skill
 extracted_at: '2026-08-20T22:11:28.900Z'
 ---
@@ -63,6 +63,28 @@ case is not the default `functional` (e.g. `negative`), then click
 `test-case-submit`. Confirm the save via the "Created ZTM-<n>." note and the
 "Your test cases (1)" heading.
 
+## Linking an automation script to a test case ("Link a script")
+This is how a test case gets related to its automated test / page object and is
+marked **automated** (the list page says: *"Attach a script to a case to mark it
+automated — that is what the coverage board counts"*).
+
+**Where it lives — gotcha:** the test-case **detail** page shows
+"Automation: No script" but has NO edit control for it. The "Link a script"
+button is only on the **test-cases list page** (`/test-cases`), one per case row.
+1. Navigate to `https://zinctm.cydeo.io/test-cases` and click the row's
+   "Link a script" button (test-id `script-toggle-ZTM-<n>`).
+2. An inline form opens with:
+   - `Framework` — default `playwright` (keep unless the script is selenium/api/other)
+   - `Automation status` — defaults to `automated`
+   - `File path` (test-id `script-path-ZTM-<n>`) — the automation file, e.g.
+     `src/pages/ZincBankMoveMoneyPage.ts` (relative repo path works)
+   - `Spec / test name` — the test/scenario name, e.g. the Cucumber scenario title
+   - `Save script link` (test-id `script-save-ZTM-<n>`)
+3. Fill `File path` and `Spec / test name` (plain `browser_fill_form` works here —
+   no native-setter hack needed, unlike the requirement textarea), then click save.
+4. Verify with `browser_find "<file path>"` — the path now renders in the card and
+   the button reads "Edit script link" instead of "Link a script".
+
 ## Verifying coverage
 After creating the cases, navigate to `/dashboard` and check the "Requirements
 covered" stat (e.g. `5/46`, `11%`). Coverage counts requirements with ≥1 linked
@@ -78,6 +100,7 @@ old refs across mutations.
 
 ## How to apply
 - Use this whenever the user asks to sign into ZincTM, analyze/rewrite a
-  requirement, or add test cases to raise coverage.
+  requirement, add test cases to raise coverage, or relate/link a test case to
+  an automation file (e.g. "make ZTM-x relate to file Y").
 - Always re-snapshot after a mutation before the next action.
 - Remember: coverage = requirements with ≥1 linked test case, not rewritten text.
