@@ -1,13 +1,15 @@
 name: Playwright Smoke
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
   pull_request:
     branches: [main]
 
 jobs:
-  smoke:
+  zincbank-smoke:
+    name: ZincBank Smoke
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -19,6 +21,22 @@ jobs:
       - run: npm ci
 
       - run: npx playwright install --with-deps chromium
+
+      - name: Check ZincBank credentials
+        env:
+          VALID_USERNAME: ${{ secrets.VALID_USERNAME }}
+          VALID_PASSWORD: ${{ secrets.VALID_PASSWORD }}
+        shell: bash
+        run: |
+          missing=0
+          for key in VALID_USERNAME VALID_PASSWORD; do
+            value="${!key}"
+            if [[ -z "${value//[[:space:]]/}" ]]; then
+              echo "::error::Missing $key. Add it under Repository secrets in Settings > Secrets and variables > Actions."
+              missing=1
+            fi
+          done
+          exit "$missing"
 
       - name: Run ZincBank smoke tests
         env:
@@ -32,7 +50,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: zincbank-report
-          path: reports/
+          path: |
+            reports/
+            screenshots/
 
   zinctm-smoke:
     name: ZincTM Smoke
@@ -48,6 +68,22 @@ jobs:
 
       - run: npx playwright install --with-deps chromium
 
+      - name: Check ZincTM credentials
+        env:
+          ZINCTM_USERNAME: ${{ secrets.ZINCTM_USERNAME }}
+          ZINCTM_PASSWORD: ${{ secrets.ZINCTM_PASSWORD }}
+        shell: bash
+        run: |
+          missing=0
+          for key in ZINCTM_USERNAME ZINCTM_PASSWORD; do
+            value="${!key}"
+            if [[ -z "${value//[[:space:]]/}" ]]; then
+              echo "::error::Missing $key. Add it under Repository secrets in Settings > Secrets and variables > Actions."
+              missing=1
+            fi
+          done
+          exit "$missing"
+
       - name: Run ZincTM smoke tests
         env:
           ZINCTM_BASE_URL: ${{ secrets.ZINCTM_BASE_URL }}
@@ -60,4 +96,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: zinctm-report
-          path: reports/
+          path: |
+            reports/
+            screenshots/
