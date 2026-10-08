@@ -4,7 +4,7 @@ Feature: zinc bank login and dashboard
     @smoke @positive
     Scenario: Login successfully with valid credentials shows to user
         Given I am on the zinc bank login page
-        When I login to zinc bank with username "casey@zinc.test" and password "Passw0rd!"
+        When I login to zinc bank with valid credentials
         Then I should see the zinc bank dashboard
 
     @negative

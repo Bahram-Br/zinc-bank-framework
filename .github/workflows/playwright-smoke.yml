@@ -1,13 +1,15 @@
 name: Playwright Smoke
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
   pull_request:
     branches: [main]
 
 jobs:
-  smoke:
+  zincbank-smoke:
+    name: ZincBank Smoke
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,19 +22,80 @@ jobs:
 
       - run: npx playwright install --with-deps chromium
 
-      - name: Run smoke tests
+      - name: Check ZincBank credentials
+        env:
+          VALID_USERNAME: ${{ secrets.VALID_USERNAME }}
+          VALID_PASSWORD: ${{ secrets.VALID_PASSWORD }}
+        shell: bash
+        run: |
+          missing=0
+          for key in VALID_USERNAME VALID_PASSWORD; do
+            value="${!key}"
+            if [[ -z "${value//[[:space:]]/}" ]]; then
+              echo "::error::Missing $key. Add it under Repository secrets in Settings > Secrets and variables > Actions."
+              missing=1
+            fi
+          done
+          exit "$missing"
+
+      - name: Run ZincBank smoke tests
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
           VALID_USERNAME: ${{ secrets.VALID_USERNAME }}
           VALID_PASSWORD: ${{ secrets.VALID_PASSWORD }}
-          ZINCTM_BASE_URL: ${{ secrets.ZINCTM_BASE_URL }}
-          ZINCTM_USERNAME: ${{ secrets.ZINCTM_USERNAME }}
-          ZINCTM_PASSWORD: ${{ secrets.ZINCTM_PASSWORD }}
-        run: npm test -- --tags "@smoke"
+        run: npm test -- --tags "@zincbank and @smoke"
 
-      - name: Upload report
+      - name: Upload ZincBank report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cucumber-report
-          path: reports/
+          name: zincbank-report
+          path: |
+            reports/
+            screenshots/
+
+  zinctm-smoke:
+    name: ZincTM Smoke
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - run: npm ci
+
+      - run: npx playwright install --with-deps chromium
+
+      - name: Check ZincTM credentials
+        env:
+          ZINCTM_USERNAME: ${{ secrets.ZINTM_USERNAME }}
+          ZINCTM_PASSWORD: ${{ secrets.ZINTM_PASSWORD }}
+        shell: bash
+        run: |
+          missing=0
+          for key in ZINCTM_USERNAME ZINCTM_PASSWORD; do
+            value="${!key}"
+            if [[ -z "${value//[[:space:]]/}" ]]; then
+              echo "::error::Missing $key. Add it under Repository secrets in Settings > Secrets and variables > Actions."
+              missing=1
+            fi
+          done
+          exit "$missing"
+
+      - name: Run ZincTM smoke tests
+        env:
+          ZINCTM_BASE_URL: ${{ secrets.ZINCTM_BASE_URL }}
+          ZINCTM_USERNAME: ${{ secrets.ZINTM_USERNAME }}
+          ZINCTM_PASSWORD: ${{ secrets.ZINTM_PASSWORD }}
+        run: npm test -- --tags "@zinctm and @smoke"
+
+      - name: Upload ZincTM report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zinctm-report
+          path: |
+            reports/
+            screenshots/

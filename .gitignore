@@ -6,7 +6,10 @@ dist/
 
 # Environment / secrets - NEVER commit these
 .env
+<<<<<<< HEAD
 .env.example
+=======
+>>>>>>> e2a0ffec9eb1d3bf89c059041b23537d728566b8
 cmdlets
 
 # Playwright browser downloads
