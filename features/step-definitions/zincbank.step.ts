@@ -90,7 +90,7 @@ Then('I should see the checking account balance and the savings account balance 
     expect(savingsNow).toBe(this.savingsCents);
 });
 
-// ZTM6: Listed owned accounts are correct
+// ZTM8: Listed owned accounts are correct
 When('I open the accounts page', async function (this: CustomWorld) {
     const moveMoneyPage = new ZincBankMoveMoneyPage(this.page);
     this.zincBankMoveMoneyPage = moveMoneyPage;
