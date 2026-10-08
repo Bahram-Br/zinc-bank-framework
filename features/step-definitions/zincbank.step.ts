@@ -12,6 +12,13 @@ Given("I am on the zinc bank login page", async function (this: CustomWorld) {
     this.zincBankLoginPage = loginPage;
 });
 
+When("I login to zinc bank with valid credentials", async function (this: CustomWorld) {
+    const { username, password } = testData.zincBank;
+    await this.zincBankLoginPage.fillUsername(username);
+    await this.zincBankLoginPage.fillPassword(password);
+    await this.zincBankLoginPage.clickLogin();
+});
+
 When("I login to zinc bank with username {string} and password {string}", async function (this: CustomWorld, username: string, password: string) {
     await this.zincBankLoginPage.fillUsername(username);
     await this.zincBankLoginPage.fillPassword(password);
