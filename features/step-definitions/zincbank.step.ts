@@ -30,7 +30,7 @@ Then("I should see the zinc bank dashboard", async function (this: CustomWorld) 
     const dashboardPage = new ZincBankDashboardPage(this.page);
     this.zincBankDashboardPage = dashboardPage;
     
-    await expect(this.page).toHaveURL("https://zincbank.cydeo.io/login");
+    await expect(this.page).toHaveURL(/.*dashboard/);
     await expect(this.zincBankDashboardPage.pageTitle).toBeVisible();
     
 });
