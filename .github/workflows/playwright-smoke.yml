@@ -70,15 +70,15 @@ jobs:
 
       - name: Check ZincTM credentials
         env:
-          ZINCTM_USERNAME: ${{ secrets.ZINTM_USERNAME }}
-          ZINCTM_PASSWORD: ${{ secrets.ZINTM_PASSWORD }}
+          ZINCTM_USERNAME: ${{ secrets.ZINCTM_USERNAME || secrets.ZINTM_USERNAME }}
+          ZINCTM_PASSWORD: ${{ secrets.ZINCTM_PASSWORD || secrets.ZINTM_PASSWORD }}
         shell: bash
         run: |
           missing=0
           for key in ZINCTM_USERNAME ZINCTM_PASSWORD; do
             value="${!key}"
             if [[ -z "${value//[[:space:]]/}" ]]; then
-              echo "::error::Missing $key. Add it under Repository secrets in Settings > Secrets and variables > Actions."
+              echo "::error::Missing $key. Add repository secret $key under Settings > Secrets and variables > Actions."
               missing=1
             fi
           done
@@ -87,8 +87,8 @@ jobs:
       - name: Run ZincTM smoke tests
         env:
           ZINCTM_BASE_URL: ${{ secrets.ZINCTM_BASE_URL }}
-          ZINCTM_USERNAME: ${{ secrets.ZINTM_USERNAME }}
-          ZINCTM_PASSWORD: ${{ secrets.ZINTM_PASSWORD }}
+          ZINCTM_USERNAME: ${{ secrets.ZINCTM_USERNAME || secrets.ZINTM_USERNAME }}
+          ZINCTM_PASSWORD: ${{ secrets.ZINCTM_PASSWORD || secrets.ZINTM_PASSWORD }}
         run: npm test -- --tags "@zinctm and @smoke"
 
       - name: Upload ZincTM report
