@@ -1,0 +1,173 @@
+◇ injected env (0) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+[
+  {
+    "description": "",
+    "elements": [
+      {
+        "description": "",
+        "id": "zinc-bank-login-and-dashboard;login-successfully-with-valid-credentials-shows-to-user",
+        "keyword": "Scenario",
+        "line": 5,
+        "name": "Login successfully with valid credentials shows to user",
+        "steps": [
+          {
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 6,
+            "name": "I am on the zinc bank login page",
+            "match": {
+              "location": "features\\step-definitions\\zincbank.step.ts:8"
+            }
+          },
+          {
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 7,
+            "name": "I login to zinc bank with valid credentials",
+            "match": {
+              "location": "features\\step-definitions\\zincbank.step.ts:14"
+            }
+          },
+          {
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 8,
+            "name": "I should see the zinc bank dashboard",
+            "match": {
+              "location": "features\\step-definitions\\zincbank.step.ts:21"
+            }
+          },
+          {
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@zincbank",
+            "line": 1
+          },
+          {
+            "name": "@smoke",
+            "line": 4
+          },
+          {
+            "name": "@positive",
+            "line": 4
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "zinc-bank-login-and-dashboard;login-unsuccessfully-with-invalid-credentials-shows-error-to-user",
+        "keyword": "Scenario",
+        "line": 11,
+        "name": "Login unsuccessfully with invalid credentials shows error to user",
+        "steps": [
+          {
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            },
+            "keyword": "Before",
+            "hidden": true
+          },
+          {
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            },
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 12,
+            "name": "I am on the zinc bank login page",
+            "match": {
+              "location": "features\\step-definitions\\zincbank.step.ts:8"
+            }
+          },
+          {
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            },
+            "arguments": [],
+            "keyword": "When ",
+            "line": 13,
+            "name": "I login to zinc bank with invalid credentials",
+            "match": {
+              "location": "features\\step-definitions\\zincbank.step.ts:30"
+            }
+          },
+          {
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            },
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 14,
+            "name": "I should see an error message indicating invalid login",
+            "match": {
+              "location": "features\\step-definitions\\zincbank.step.ts:38"
+            }
+          },
+          {
+            "result": {
+              "status": "skipped",
+              "duration": 0
+            },
+            "keyword": "After",
+            "hidden": true
+          }
+        ],
+        "tags": [
+          {
+            "name": "@zincbank",
+            "line": 1
+          },
+          {
+            "name": "@negative",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "zinc-bank-login-and-dashboard",
+    "line": 2,
+    "keyword": "Feature",
+    "name": "zinc bank login and dashboard",
+    "tags": [
+      {
+        "name": "@zincbank",
+        "line": 1
+      }
+    ],
+    "uri": "features\\step-definitions\\zincbank.feature"
+  }
+]
