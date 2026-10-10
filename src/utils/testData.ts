@@ -5,8 +5,8 @@ import { config } from '../config/config';
  * Missing values fail that scenario instead of falling back to a password in source.
  */
 function requiredEnv(name: string): string {
-  const value = process.env[name]?.trim();
-  if (!value) {
+  const value = process.env[name];
+  if (!value?.trim()) {
     throw new Error(
       `Missing ${name}. Set it in .env locally, or as a GitHub Actions secret in CI.`,
     );
@@ -21,12 +21,13 @@ function requiredEnv(name: string): string {
  * credentials are never hardcoded in the framework and never committed to Git.
  */
 export const testData = {
+  // Casey fixture: fixed accounts for ZTM8 and registered email for ZTM4.
   zincBank: {
     get username(): string {
-      return requiredEnv('VALID_USERNAME');
+      return requiredEnv('TEST_USERNAME');
     },
     get password(): string {
-      return requiredEnv('VALID_PASSWORD');
+      return requiredEnv('TEST_PASSWORD');
     },
   },
 
@@ -39,6 +40,7 @@ export const testData = {
     },
   },
 
+  // Personal sandbox account used by ZTM1.
   owner: {
     get username(): string {
       return requiredEnv('OWNER_USERNAME');

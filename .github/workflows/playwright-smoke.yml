@@ -61,12 +61,14 @@ jobs:
       - name: Check ZincBank credentials
         if: steps.changed.outputs.zincbank == 'true'
         env:
-          VALID_USERNAME: ${{ secrets.VALID_USERNAME }}
-          VALID_PASSWORD: ${{ secrets.VALID_PASSWORD }}
+          TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
+          TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+          OWNER_USERNAME: ${{ secrets.OWNER_USERNAME }}
+          OWNER_PASSWORD: ${{ secrets.OWNER_PASSWORD }}
         shell: bash
         run: |
           missing=0
-          for key in VALID_USERNAME VALID_PASSWORD; do
+          for key in TEST_USERNAME TEST_PASSWORD OWNER_USERNAME OWNER_PASSWORD; do
             value="${!key}"
             if [[ -z "${value//[[:space:]]/}" ]]; then
               echo "::error::Missing $key. Add repository secret $key under Settings > Secrets and variables > Actions."
@@ -79,8 +81,10 @@ jobs:
         if: steps.changed.outputs.zincbank == 'true'
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
-          VALID_USERNAME: ${{ secrets.VALID_USERNAME }}
-          VALID_PASSWORD: ${{ secrets.VALID_PASSWORD }}
+          TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
+          TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+          OWNER_USERNAME: ${{ secrets.OWNER_USERNAME }}
+          OWNER_PASSWORD: ${{ secrets.OWNER_PASSWORD }}
         run: npx cucumber-js features/step-definitions/zincbank.feature
 
       - name: Check ZincTM credentials

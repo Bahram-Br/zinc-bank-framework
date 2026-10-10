@@ -16,7 +16,7 @@ Feature: zinc bank login and dashboard
     @ztm1
     Scenario: Transfer above available balance is rejected with INSUFFICIENT_FUNDS
         Given I am on the zinc bank login page
-        When I login to zinc bank with username "casey@zinc.test" and password "Passw0rd!"
+        When I login to zinc bank with my sandbox credentials
         And I note the checking account balance and the savings account balance
         And I submit a transfer of the checking account balance plus $0.01 to the savings account
         Then I should see insufficient funds error message
@@ -25,7 +25,7 @@ Feature: zinc bank login and dashboard
     @ztm8
     Scenario: Listed owned accounts are correct
         Given I am on the zinc bank login page
-        When I login to zinc bank with username "casey@zinc.test" and password "Passw0rd!"
+        When I login to zinc bank with the Casey test account
         And I open the accounts page
         Then I should see the accounts listed below
             | Account Type | Account Number | Balance     |
@@ -35,6 +35,6 @@ Feature: zinc bank login and dashboard
     @ztm4
     Scenario: Signing up with an already-registered email is rejected
         Given I am on the zinc bank sign-up page
-        When I sign up as "Casey" "Zinc" with email "casey@zinc.test" and password "NewPassw0rd!"
+        When I sign up as "Casey" "Zinc" with the registered Casey email and password "NewPassw0rd!"
         Then I should see an error message indicating the email is already registered
         And I should still be on the sign-up page
