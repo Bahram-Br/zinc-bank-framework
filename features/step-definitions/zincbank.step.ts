@@ -20,7 +20,17 @@ When("I login to zinc bank with valid credentials", async function (this: Custom
     await this.zincBankLoginPage.clickLogin();
 });
 
-When("I login to zinc bank with username {string} and password {string}", async function (this: CustomWorld, username: string, password: string) {
+//ztm1
+When("I login to zinc bank with my sandbox credentials", async function (this: CustomWorld) {
+    const { username, password } = testData.owner;
+    await this.zincBankLoginPage.fillUsername(username);
+    await this.zincBankLoginPage.fillPassword(password);
+    await this.zincBankLoginPage.clickLogin();
+});
+
+//ztm8
+When("I login to zinc bank with the Casey test account", async function (this: CustomWorld) {
+    const { username, password } = testData.zincBank;
     await this.zincBankLoginPage.fillUsername(username);
     await this.zincBankLoginPage.fillPassword(password);
     await this.zincBankLoginPage.clickLogin();
@@ -127,14 +137,14 @@ Given('I am on the zinc bank sign-up page', async function (this: CustomWorld) {
     await zincBankApplyPage.goto();
 });
 
-When('I sign up as {string} {string} with email {string} and password {string}',
-     async function(this:CustomWorld, firstname: string, lastname:string, email: string, password: string){
+When('I sign up as {string} {string} with the registered Casey email and password {string}',
+     async function(this:CustomWorld, firstname: string, lastname:string, password: string){
 
     await this.zincBankApplyPage.clickContinue();
 
     await this.zincBankApplyPage.fillFirstName(firstname);
     await this.zincBankApplyPage.fillLastName(lastname);
-    await this.zincBankApplyPage.fillEmail(email);
+    await this.zincBankApplyPage.fillEmail(testData.zincBank.username);
     
     await this.zincBankApplyPage.clickContinue();
 
