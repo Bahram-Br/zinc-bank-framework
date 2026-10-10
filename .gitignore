@@ -7,8 +7,6 @@ dist/
 # Environment and local secrets.
 # Ignore .env. Keep .env.example tracked as the template.
 .env
-.env.*
-!.env.example
 cmdlets
 
 # Playwright output
