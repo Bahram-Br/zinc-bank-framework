@@ -1,0 +1,118 @@
+name: Playwright changed features
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  changed-features:
+    name: Changed feature files
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changed feature files
+        id: changed
+        shell: bash
+        run: |
+          before="${{ github.event.before }}"
+          sha="${{ github.sha }}"
+          zincbank=false
+          zinctm=false
+          if [[ -n "$before" && ! "$before" =~ ^0+$ ]]; then
+            files="$(git diff --name-only "$before" "$sha" -- 'features/step-definitions/*.feature')"
+            echo "Changed feature files:"
+            if [[ -z "$files" ]]; then
+              echo "(none)"
+            else
+              echo "$files"
+            fi
+            if grep -qx 'features/step-definitions/zincbank.feature' <<< "$files"; then
+              zincbank=true
+            fi
+            if grep -qx 'features/step-definitions/zinctm.feature' <<< "$files"; then
+              zinctm=true
+            fi
+          else
+            echo "No parent commit. Skipping tests."
+          fi
+          echo "zincbank=$zincbank" >> "$GITHUB_OUTPUT"
+          echo "zinctm=$zinctm" >> "$GITHUB_OUTPUT"
+
+      - name: No feature changes
+        if: steps.changed.outputs.zincbank != 'true' && steps.changed.outputs.zinctm != 'true'
+        run: echo "No feature file changed in this push. Skipping tests."
+
+      - uses: actions/setup-node@v4
+        if: steps.changed.outputs.zincbank == 'true' || steps.changed.outputs.zinctm == 'true'
+        with:
+          node-version: "22"
+
+      - name: Install dependencies
+        if: steps.changed.outputs.zincbank == 'true' || steps.changed.outputs.zinctm == 'true'
+        run: npm ci
+
+      - name: Install Playwright
+        if: steps.changed.outputs.zincbank == 'true' || steps.changed.outputs.zinctm == 'true'
+        run: npx playwright install --with-deps chromium
+
+      - name: Check ZincBank credentials
+        if: steps.changed.outputs.zincbank == 'true'
+        env:
+          VALID_USERNAME: ${{ secrets.VALID_USERNAME }}
+          VALID_PASSWORD: ${{ secrets.VALID_PASSWORD }}
+        shell: bash
+        run: |
+          missing=0
+          for key in VALID_USERNAME VALID_PASSWORD; do
+            value="${!key}"
+            if [[ -z "${value//[[:space:]]/}" ]]; then
+              echo "::error::Missing $key. Add repository secret $key under Settings > Secrets and variables > Actions."
+              missing=1
+            fi
+          done
+          exit "$missing"
+
+      - name: Run ZincBank feature
+        if: steps.changed.outputs.zincbank == 'true'
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          VALID_USERNAME: ${{ secrets.VALID_USERNAME }}
+          VALID_PASSWORD: ${{ secrets.VALID_PASSWORD }}
+        run: npx cucumber-js features/step-definitions/zincbank.feature
+
+      - name: Check ZincTM credentials
+        if: steps.changed.outputs.zinctm == 'true'
+        env:
+          ZINCTM_USERNAME: ${{ secrets.ZINCTM_USERNAME || secrets.ZINTM_USERNAME }}
+          ZINCTM_PASSWORD: ${{ secrets.ZINCTM_PASSWORD || secrets.ZINTM_PASSWORD }}
+        shell: bash
+        run: |
+          missing=0
+          for key in ZINCTM_USERNAME ZINCTM_PASSWORD; do
+            value="${!key}"
+            if [[ -z "${value//[[:space:]]/}" ]]; then
+              echo "::error::Missing $key. Add repository secret $key under Settings > Secrets and variables > Actions."
+              missing=1
+            fi
+          done
+          exit "$missing"
+
+      - name: Run ZincTM feature
+        if: steps.changed.outputs.zinctm == 'true'
+        env:
+          ZINCTM_BASE_URL: ${{ secrets.ZINCTM_BASE_URL }}
+          ZINCTM_USERNAME: ${{ secrets.ZINCTM_USERNAME || secrets.ZINTM_USERNAME }}
+          ZINCTM_PASSWORD: ${{ secrets.ZINCTM_PASSWORD || secrets.ZINTM_PASSWORD }}
+        run: npx cucumber-js features/step-definitions/zinctm.feature
+
+      - name: Upload report
+        if: always() && (steps.changed.outputs.zincbank == 'true' || steps.changed.outputs.zinctm == 'true')
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-report
+          path: |
+            reports/
+            screenshots/
