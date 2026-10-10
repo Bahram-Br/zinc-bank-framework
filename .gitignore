@@ -21,7 +21,6 @@ playwright/.cache/
 # Reports and screenshots (keep the directory placeholders)
 reports/*
 !reports/.gitkeep
-reports-dryrun.json
 allure-results/
 allure-report/
 screenshots/*
@@ -35,7 +34,6 @@ screenshots/*
 .DS_Store
 Thumbs.db
 Desktop.ini
-Microsoft/
 
 # Logs
 *.log
