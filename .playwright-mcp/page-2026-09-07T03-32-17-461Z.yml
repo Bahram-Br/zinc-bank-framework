@@ -1,0 +1,191 @@
+- generic [active] [ref=f3e1]:
+  - generic [ref=f3e2]:
+    - banner [ref=f3e3]:
+      - generic [ref=f3e4]:
+        - link "ZincTM" [ref=f3e5] [cursor=pointer]:
+          - /url: /dashboard
+        - generic [ref=f3e6]:
+          - search [ref=f3e7]:
+            - textbox "Go to issue by key" [ref=f3e8]:
+              - /placeholder: Go to issue…
+          - button "Toggle light or dark theme" [ref=f3e9]
+          - button "Sign out" [ref=f3e12]
+    - generic [ref=f3e17]:
+      - navigation "Project" [ref=f3e18]:
+        - list [ref=f3e19]:
+          - listitem [ref=f3e20]:
+            - link "Dashboard" [ref=f3e21] [cursor=pointer]:
+              - /url: /dashboard
+          - listitem [ref=f3e22]:
+            - link "Board" [ref=f3e23] [cursor=pointer]:
+              - /url: /board
+          - listitem [ref=f3e24]:
+            - link "Requirements" [ref=f3e25] [cursor=pointer]:
+              - /url: /requirements
+          - listitem [ref=f3e26]:
+            - link "Test cases" [ref=f3e27] [cursor=pointer]:
+              - /url: /test-cases
+          - listitem [ref=f3e28]:
+            - link "Coverage" [ref=f3e29] [cursor=pointer]:
+              - /url: /coverage
+          - listitem [ref=f3e30]:
+            - link "Runs" [ref=f3e31] [cursor=pointer]:
+              - /url: /runs
+          - listitem [ref=f3e32]:
+            - link "Defects" [ref=f3e33] [cursor=pointer]:
+              - /url: /defects
+      - main [ref=f3e34]:
+        - generic [ref=f3e36]:
+          - generic [ref=f3e37]:
+            - heading "Your QA workspace" [level=1] [ref=f3e38]
+            - paragraph [ref=f3e39]: Everything here is yours alone. Work it through the UI, or drive it from an agent over MCP — both write to the same records.
+          - generic [ref=f3e40]:
+            - generic [ref=f3e42]:
+              - paragraph [ref=f3e43]: Requirements covered
+              - paragraph [ref=f3e44]: 6/46
+              - paragraph [ref=f3e45]: 13% have at least one test case
+            - generic [ref=f3e47]:
+              - paragraph [ref=f3e48]: Test cases
+              - paragraph [ref=f3e49]: "6"
+              - paragraph [ref=f3e50]: 0 automated
+            - generic [ref=f3e52]:
+              - paragraph [ref=f3e53]: Test runs
+              - paragraph [ref=f3e54]: "0"
+              - paragraph [ref=f3e55]: none yet
+            - generic [ref=f3e57]:
+              - paragraph [ref=f3e58]: Open defects
+              - paragraph [ref=f3e59]: "0"
+              - paragraph [ref=f3e60]: not closed or rejected
+          - generic [ref=f3e61]:
+            - generic [ref=f3e62]:
+              - heading "Open defects" [level=2] [ref=f3e64]
+              - paragraph [ref=f3e66]: No open defects. File one from a failing test result.
+            - generic [ref=f3e67]:
+              - heading "Recent runs" [level=2] [ref=f3e69]
+              - paragraph [ref=f3e71]: No runs yet. Create one, then record results against your test cases.
+          - generic [ref=f3e72]:
+            - generic [ref=f3e73]:
+              - heading "Weakest coverage" [level=2] [ref=f3e74]
+              - paragraph [ref=f3e75]: Requirements with no test case yet — the honest starting list.
+            - list [ref=f3e77]:
+              - listitem [ref=f3e78]:
+                - link "B2 Looking at one account in detail" [ref=f3e79] [cursor=pointer]:
+                  - /url: /requirements/75a067f1-262b-4d24-9476-516ee80505ca
+                  - generic [ref=f3e80]: B2
+                  - generic [ref=f3e81]: Looking at one account in detail
+              - listitem [ref=f3e82]:
+                - link "B3 Opening another account" [ref=f3e83] [cursor=pointer]:
+                  - /url: /requirements/a0ed6319-f987-41b0-9209-b5f27939528e
+                  - generic [ref=f3e84]: B3
+                  - generic [ref=f3e85]: Opening another account
+              - listitem [ref=f3e86]:
+                - link "B4 Somebody else's account" [ref=f3e87] [cursor=pointer]:
+                  - /url: /requirements/0e8e8dcc-68aa-4f64-9f7e-c4bbc1112f68
+                  - generic [ref=f3e88]: B4
+                  - generic [ref=f3e89]: Somebody else's account
+              - listitem [ref=f3e90]:
+                - link "C1 The first thing you see after signing in" [ref=f3e91] [cursor=pointer]:
+                  - /url: /requirements/3c132f11-5f20-499e-a331-ef73cbf30fb1
+                  - generic [ref=f3e92]: C1
+                  - generic [ref=f3e93]: The first thing you see after signing in
+              - listitem [ref=f3e94]:
+                - link "C2 How much you have altogether" [ref=f3e95] [cursor=pointer]:
+                  - /url: /requirements/05f4eb0a-26f1-4b36-b48f-a19c7cbbe71b
+                  - generic [ref=f3e96]: C2
+                  - generic [ref=f3e97]: How much you have altogether
+              - listitem [ref=f3e98]:
+                - link "C3 Your card on the dashboard" [ref=f3e99] [cursor=pointer]:
+                  - /url: /requirements/71fcbc2b-541f-4714-b67c-05e0aa53228b
+                  - generic [ref=f3e100]: C3
+                  - generic [ref=f3e101]: Your card on the dashboard
+              - listitem [ref=f3e102]:
+                - link "C4 Recent activity" [ref=f3e103] [cursor=pointer]:
+                  - /url: /requirements/9683fe7a-200a-44b9-82b6-2a1e849e49c8
+                  - generic [ref=f3e104]: C4
+                  - generic [ref=f3e105]: Recent activity
+              - listitem [ref=f3e106]:
+                - link "C5 Getting to a transfer quickly" [ref=f3e107] [cursor=pointer]:
+                  - /url: /requirements/547ced18-9d6a-47fb-9cfb-b70845ba8a1b
+                  - generic [ref=f3e108]: C5
+                  - generic [ref=f3e109]: Getting to a transfer quickly
+              - listitem [ref=f3e110]:
+                - link "D2 Paying a company you owe" [ref=f3e111] [cursor=pointer]:
+                  - /url: /requirements/56e702f5-c6f1-42e1-82da-ce9cf0c749cf
+                  - generic [ref=f3e112]: D2
+                  - generic [ref=f3e113]: Paying a company you owe
+              - listitem [ref=f3e114]:
+                - link "D3 Keeping a list of who you pay" [ref=f3e115] [cursor=pointer]:
+                  - /url: /requirements/094c0a47-1e79-4a66-b0e0-bf9182a6d69e
+                  - generic [ref=f3e116]: D3
+                  - generic [ref=f3e117]: Keeping a list of who you pay
+              - listitem [ref=f3e118]:
+                - link "D4 When you don't have enough" [ref=f3e119] [cursor=pointer]:
+                  - /url: /requirements/286941f7-7d1e-4293-805e-510be3494636
+                  - generic [ref=f3e120]: D4
+                  - generic [ref=f3e121]: When you don't have enough
+              - listitem [ref=f3e122]:
+                - link "D5 Pressing pay twice" [ref=f3e123] [cursor=pointer]:
+                  - /url: /requirements/e8839abf-e6a4-44aa-b12d-2208d94ad239
+                  - generic [ref=f3e124]: D5
+                  - generic [ref=f3e125]: Pressing pay twice
+              - listitem [ref=f3e126]:
+                - link "E1 Send money to another customer instantly" [ref=f3e127] [cursor=pointer]:
+                  - /url: /requirements/621f8fa3-6774-488a-89ca-aebe164963c0
+                  - generic [ref=f3e128]: E1
+                  - generic [ref=f3e129]: Send money to another customer instantly
+              - listitem [ref=f3e130]:
+                - link "E2 Look up the recipient before sending" [ref=f3e131] [cursor=pointer]:
+                  - /url: /requirements/1a7f2671-818e-4341-9e6f-aa7b24e2d884
+                  - generic [ref=f3e132]: E2
+                  - generic [ref=f3e133]: Look up the recipient before sending
+              - listitem [ref=f3e134]:
+                - link "E3 Move the funds and notify both parties" [ref=f3e135] [cursor=pointer]:
+                  - /url: /requirements/a67b26fa-f8c2-49df-8448-cec73694e7fb
+                  - generic [ref=f3e136]: E3
+                  - generic [ref=f3e137]: Move the funds and notify both parties
+              - listitem [ref=f3e138]:
+                - link "E4 Delivery speed" [ref=f3e139] [cursor=pointer]:
+                  - /url: /requirements/391c395e-903d-4cb4-ac82-82e0e1359a07
+                  - generic [ref=f3e140]: E4
+                  - generic [ref=f3e141]: Delivery speed
+              - listitem [ref=f3e142]:
+                - link "E5 No self-send" [ref=f3e143] [cursor=pointer]:
+                  - /url: /requirements/77e67ea6-ee84-4598-be86-bd3d5dfb893b
+                  - generic [ref=f3e144]: E5
+                  - generic [ref=f3e145]: No self-send
+              - listitem [ref=f3e146]:
+                - link "E6 Sending limits" [ref=f3e147] [cursor=pointer]:
+                  - /url: /requirements/483259e8-c9df-4aa1-a687-c9e4c7898f51
+                  - generic [ref=f3e148]: E6
+                  - generic [ref=f3e149]: Sending limits
+              - listitem [ref=f3e150]:
+                - link "E7 Insufficient funds" [ref=f3e151] [cursor=pointer]:
+                  - /url: /requirements/15e6567e-210c-47ea-b7fb-56e01f09edb9
+                  - generic [ref=f3e152]: E7
+                  - generic [ref=f3e153]: Insufficient funds
+              - listitem [ref=f3e154]:
+                - link "E8 Validation and error messaging" [ref=f3e155] [cursor=pointer]:
+                  - /url: /requirements/201fbaed-3346-43f4-922f-2fce9f41a5b5
+                  - generic [ref=f3e156]: E8
+                  - generic [ref=f3e157]: Validation and error messaging
+              - listitem [ref=f3e158]:
+                - link "E9 Duplicate submission" [ref=f3e159] [cursor=pointer]:
+                  - /url: /requirements/a90c974b-c269-493d-a1ac-b1db6a0c551a
+                  - generic [ref=f3e160]: E9
+                  - generic [ref=f3e161]: Duplicate submission
+              - listitem [ref=f3e162]:
+                - link "E10 Request money from another customer" [ref=f3e163] [cursor=pointer]:
+                  - /url: /requirements/b9bd6c88-ad6a-46bf-8f55-ed95782f4442
+                  - generic [ref=f3e164]: E10
+                  - generic [ref=f3e165]: Request money from another customer
+              - listitem [ref=f3e166]:
+                - link "E11 Who may request from whom" [ref=f3e167] [cursor=pointer]:
+                  - /url: /requirements/eaf04bdc-9021-4884-be58-1bff8781a13b
+                  - generic [ref=f3e168]: E11
+                  - generic [ref=f3e169]: Who may request from whom
+              - listitem [ref=f3e170]:
+                - link "E12 Non-functional requirements" [ref=f3e171] [cursor=pointer]:
+                  - /url: /requirements/f8ab3bd8-f8d4-4747-9fe1-2cf0abe445a6
+                  - generic [ref=f3e172]: E12
+                  - generic [ref=f3e173]: Non-functional requirements
+  - alert [ref=f3e174]

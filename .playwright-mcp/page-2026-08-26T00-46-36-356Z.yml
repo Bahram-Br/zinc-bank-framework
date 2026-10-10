@@ -1,0 +1,263 @@
+- generic [active] [ref=f3e1]:
+  - generic [ref=f3e2]:
+    - banner [ref=f3e3]:
+      - generic [ref=f3e4]:
+        - link "ZincTM" [ref=f3e5] [cursor=pointer]:
+          - /url: /dashboard
+        - generic [ref=f3e6]:
+          - search [ref=f3e7]:
+            - textbox "Go to issue by key" [ref=f3e8]:
+              - /placeholder: Go to issue…
+          - button "Toggle light or dark theme" [ref=f3e9]
+          - button "Sign out" [ref=f3e12]
+    - generic [ref=f3e17]:
+      - navigation "Project" [ref=f3e18]:
+        - list [ref=f3e19]:
+          - listitem [ref=f3e20]:
+            - link "Dashboard" [ref=f3e21] [cursor=pointer]:
+              - /url: /dashboard
+          - listitem [ref=f3e22]:
+            - link "Board" [ref=f3e23] [cursor=pointer]:
+              - /url: /board
+          - listitem [ref=f3e24]:
+            - link "Requirements" [ref=f3e25] [cursor=pointer]:
+              - /url: /requirements
+          - listitem [ref=f3e26]:
+            - link "Test cases" [ref=f3e27] [cursor=pointer]:
+              - /url: /test-cases
+          - listitem [ref=f3e28]:
+            - link "Coverage" [ref=f3e29] [cursor=pointer]:
+              - /url: /coverage
+          - listitem [ref=f3e30]:
+            - link "Runs" [ref=f3e31] [cursor=pointer]:
+              - /url: /runs
+          - listitem [ref=f3e32]:
+            - link "Defects" [ref=f3e33] [cursor=pointer]:
+              - /url: /defects
+      - main [ref=f3e34]:
+        - generic [ref=f3e36]:
+          - generic [ref=f3e37]:
+            - link "← All requirements" [ref=f3e38] [cursor=pointer]:
+              - /url: /requirements
+            - generic [ref=f3e39]:
+              - generic [ref=f3e40]: A1
+              - generic [ref=f3e41]: Getting Started
+            - heading "Opening an account with ZincBank" [level=1] [ref=f3e42]
+          - generic [ref=f3e43]:
+            - heading "The requirement" [level=2] [ref=f3e45]
+            - generic [ref=f3e47]:
+              - generic [ref=f3e48]:
+                - generic [ref=f3e49]: Title
+                - textbox "Title" [ref=f3e50]: Opening an account with ZincBank
+              - generic [ref=f3e51]:
+                - generic [ref=f3e52]: The requirement
+                - textbox "The requirement" [ref=f3e53]: "AC1: A visitor can open the ZincBank sign-up page and submit an email, a password, and their name. AC2: On successful submission with valid data, the visitor is signed in and lands on the dashboard. AC3: A new account is created with a zero balance and is immediately available to use. AC4: Submitting an invalid email, a password shorter than 8 characters, or a missing name shows a validation error and no account is created."
+                - paragraph [ref=f3e54]: Rewrite it until someone could tell you whether the system passes or fails.
+              - generic [ref=f3e55]:
+                - button "Save my version" [ref=f3e56]
+                - button "Compare to the original" [ref=f3e57]
+          - generic [ref=f3e58]:
+            - heading "Your test cases (0)" [level=2] [ref=f3e60]
+            - paragraph [ref=f3e62]: You have not written a case for this requirement yet.
+          - generic [ref=f3e63]:
+            - generic [ref=f3e64]:
+              - heading "Raise a requirement defect" [level=2] [ref=f3e65]
+              - paragraph [ref=f3e66]: "Rewriting it above says what it should say. This says what was wrong with it. Label the flaw: req:unmeasurable, req:ambiguous, req:contradictory, req:silent, req:solution-not-need, req:undated."
+            - generic [ref=f3e68]:
+              - generic [ref=f3e69]:
+                - generic [ref=f3e70]: Title
+                - textbox "Title" [ref=f3e71]:
+                  - /placeholder: Failed transfer debits the source account but never credits the target
+              - generic [ref=f3e72]:
+                - generic [ref=f3e73]: Steps to reproduce
+                - textbox "Steps to reproduce" [ref=f3e74]
+              - generic [ref=f3e75]:
+                - generic [ref=f3e76]: Expected
+                - textbox "Expected" [ref=f3e77]
+              - generic [ref=f3e78]:
+                - generic [ref=f3e79]: Actual
+                - textbox "Actual" [ref=f3e80]
+              - generic [ref=f3e81]:
+                - generic [ref=f3e82]: Severity
+                - combobox "Severity" [ref=f3e84]:
+                  - option "S1"
+                  - option "S2"
+                  - option "S3" [selected]
+                  - option "S4"
+              - generic [ref=f3e85]:
+                - generic [ref=f3e86]: Priority
+                - combobox "Priority" [ref=f3e88]:
+                  - option "P1"
+                  - option "P2" [selected]
+                  - option "P3"
+                  - option "P4"
+              - generic [ref=f3e89]:
+                - generic [ref=f3e90]: Environment
+                - combobox "Environment" [ref=f3e92]:
+                  - option "local" [selected]
+                  - option "preview"
+                  - option "prod"
+              - generic [ref=f3e93]:
+                - generic [ref=f3e94]: Labels
+                - textbox "Labels" [ref=f3e95]:
+                  - /placeholder: regression, money-movement
+                  - text: "req:"
+                - paragraph [ref=f3e96]: Comma separated.
+              - generic [ref=f3e97]:
+                - generic [ref=f3e98]: Requirement
+                - combobox "Requirement" [ref=f3e100]:
+                  - option "— none —"
+                  - option "A1 · Opening an account with ZincBank" [selected]
+                  - option "A2 · Signing in"
+                  - option "A3 · Someone signs up twice with the same email"
+                  - option "A4 · Forgetting your password"
+                  - option "B1 · Seeing the accounts you hold"
+                  - option "B2 · Looking at one account in detail"
+                  - option "B3 · Opening another account"
+                  - option "B4 · Somebody else's account"
+                  - option "C1 · The first thing you see after signing in"
+                  - option "C2 · How much you have altogether"
+                  - option "C3 · Your card on the dashboard"
+                  - option "C4 · Recent activity"
+                  - option "C5 · Getting to a transfer quickly"
+                  - option "D1 · Moving money between your own accounts"
+                  - option "D2 · Paying a company you owe"
+                  - option "D3 · Keeping a list of who you pay"
+                  - option "D4 · When you don't have enough"
+                  - option "D5 · Pressing pay twice"
+                  - option "E1 · Send money to another customer instantly"
+                  - option "E2 · Look up the recipient before sending"
+                  - option "E3 · Move the funds and notify both parties"
+                  - option "E4 · Delivery speed"
+                  - option "E5 · No self-send"
+                  - option "E6 · Sending limits"
+                  - option "E7 · Insufficient funds"
+                  - option "E8 · Validation and error messaging"
+                  - option "E9 · Duplicate submission"
+                  - option "E10 · Request money from another customer"
+                  - option "E11 · Who may request from whom"
+                  - option "E12 · Non-functional requirements"
+                  - option "E13 · Send button"
+                  - option "F1 · Looking back at what happened"
+                  - option "F2 · Long histories"
+                  - option "F3 · Your monthly statement"
+                  - option "F4 · Card statements"
+                  - option "G1 · Applying for a card"
+                  - option "G2 · What you get if you're approved"
+                  - option "G3 · Spending on the card"
+                  - option "G4 · Paying your card off"
+                  - option "G5 · Your card statement"
+                  - option "G6 · One card each"
+                  - option "H1 · Seeing your details"
+                  - option "H2 · Changing your details"
+                  - option "H3 · Changing your password"
+                  - option "H4 · Staying signed in"
+                  - option "H5 · When something goes wrong"
+              - generic [ref=f3e101]:
+                - generic [ref=f3e102]: Test case
+                - combobox "Test case" [ref=f3e104]:
+                  - option "— none —" [selected]
+              - button "File defect" [ref=f3e106]
+          - generic [ref=f3e107]:
+            - heading "Add a test case" [level=2] [ref=f3e109]
+            - generic [ref=f3e111]:
+              - generic [ref=f3e112]:
+                - generic [ref=f3e113]: Title
+                - textbox "Title" [ref=f3e114]:
+                  - /placeholder: Transfer above balance is rejected with INSUFFICIENT_FUNDS
+              - generic [ref=f3e115]:
+                - generic [ref=f3e116]: Requirement
+                - combobox "Requirement" [ref=f3e118]:
+                  - option "— not linked —"
+                  - option "A1 · Opening an account with ZincBank" [selected]
+                  - option "A2 · Signing in"
+                  - option "A3 · Someone signs up twice with the same email"
+                  - option "A4 · Forgetting your password"
+                  - option "B1 · Seeing the accounts you hold"
+                  - option "B2 · Looking at one account in detail"
+                  - option "B3 · Opening another account"
+                  - option "B4 · Somebody else's account"
+                  - option "C1 · The first thing you see after signing in"
+                  - option "C2 · How much you have altogether"
+                  - option "C3 · Your card on the dashboard"
+                  - option "C4 · Recent activity"
+                  - option "C5 · Getting to a transfer quickly"
+                  - option "D1 · Moving money between your own accounts"
+                  - option "D2 · Paying a company you owe"
+                  - option "D3 · Keeping a list of who you pay"
+                  - option "D4 · When you don't have enough"
+                  - option "D5 · Pressing pay twice"
+                  - option "E1 · Send money to another customer instantly"
+                  - option "E2 · Look up the recipient before sending"
+                  - option "E3 · Move the funds and notify both parties"
+                  - option "E4 · Delivery speed"
+                  - option "E5 · No self-send"
+                  - option "E6 · Sending limits"
+                  - option "E7 · Insufficient funds"
+                  - option "E8 · Validation and error messaging"
+                  - option "E9 · Duplicate submission"
+                  - option "E10 · Request money from another customer"
+                  - option "E11 · Who may request from whom"
+                  - option "E12 · Non-functional requirements"
+                  - option "E13 · Send button"
+                  - option "F1 · Looking back at what happened"
+                  - option "F2 · Long histories"
+                  - option "F3 · Your monthly statement"
+                  - option "F4 · Card statements"
+                  - option "G1 · Applying for a card"
+                  - option "G2 · What you get if you're approved"
+                  - option "G3 · Spending on the card"
+                  - option "G4 · Paying your card off"
+                  - option "G5 · Your card statement"
+                  - option "G6 · One card each"
+                  - option "H1 · Seeing your details"
+                  - option "H2 · Changing your details"
+                  - option "H3 · Changing your password"
+                  - option "H4 · Staying signed in"
+                  - option "H5 · When something goes wrong"
+                - paragraph [ref=f3e119]: Linking a case is what makes coverage mean anything.
+              - generic [ref=f3e120]:
+                - generic [ref=f3e121]: Preconditions
+                - textbox "Preconditions" [ref=f3e122]:
+                  - /placeholder: Signed in as casey@zinc.test with a $5,000 checking balance
+              - generic [ref=f3e123]:
+                - generic [ref=f3e124]: Steps
+                - textbox "Steps" [ref=f3e125]:
+                  - /placeholder: "Open /move-money\nEnter 999999.00\nSubmit the transfer"
+                - paragraph [ref=f3e126]: One step per line.
+              - generic [ref=f3e127]:
+                - generic [ref=f3e128]: Expected result
+                - textbox "Expected result" [ref=f3e129]:
+                  - /placeholder: HTTP 422 with error.code INSUFFICIENT_FUNDS and no ledger rows written
+                - paragraph [ref=f3e130]: State a checkable value — a status code, an error code, an exact amount.
+              - generic [ref=f3e131]:
+                - generic [ref=f3e132]: Labels
+                - textbox "Labels" [ref=f3e133]:
+                  - /placeholder: smoke, money-movement
+                - paragraph [ref=f3e134]: Comma separated.
+              - generic [ref=f3e135]:
+                - generic [ref=f3e136]:
+                  - generic [ref=f3e137]: Type
+                  - combobox "Type" [ref=f3e139]:
+                    - option "functional" [selected]
+                    - option "negative"
+                    - option "boundary"
+                    - option "e2e"
+                    - option "api"
+                    - option "regression"
+                    - option "security"
+                - generic [ref=f3e140]:
+                  - generic [ref=f3e141]: Priority
+                  - combobox "Priority" [ref=f3e143]:
+                    - option "P1"
+                    - option "P2" [selected]
+                    - option "P3"
+                    - option "P4"
+                - generic [ref=f3e144]:
+                  - generic [ref=f3e145]: Status
+                  - combobox "Status" [ref=f3e147]:
+                    - option "draft" [selected]
+                    - option "ready"
+                    - option "deprecated"
+              - button "Save test case" [ref=f3e149]
+  - alert [ref=f3e150]
