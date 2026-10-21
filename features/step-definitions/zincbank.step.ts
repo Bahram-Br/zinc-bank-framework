@@ -131,7 +131,7 @@ Then('I should see the accounts listed below', async function (this: CustomWorld
             expect(text).toMatch(/\$[\d,]+\.\d{2}/);
         } else {
             expect(text).toContain(expectedAccounts[i]['Balance']);
-        };
+        }
     }
 });
 
