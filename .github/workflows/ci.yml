@@ -7,11 +7,24 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
-  check:
-    name: Install and type-check
+  test:
+    name: Type-check and run tests
     runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      BASE_URL: https://zincbank.cydeo.io
+      ZINCTM_BASE_URL: https://zinctm.cydeo.io
+      BROWSER: chromium
+      HEADLESS: "true"
+      TEST_USERNAME: ${{ secrets.TEST_USERNAME }}
+      TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+      ZINCTM_USERNAME: ${{ secrets.ZINCTM_USERNAME }}
+      ZINCTM_PASSWORD: ${{ secrets.ZINCTM_PASSWORD }}
+      OWNER_USERNAME: ${{ secrets.OWNER_USERNAME }}
+      OWNER_PASSWORD: ${{ secrets.OWNER_PASSWORD }}
     steps:
       - name: Check out the code
         uses: actions/checkout@v4
@@ -20,6 +33,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
 
       - name: Install dependencies
         run: npm ci
@@ -27,3 +41,17 @@ jobs:
       # package.json "typecheck" runs `tsc --noEmit`.
       - name: Type-check
         run: npm run typecheck
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Cucumber tests
+        run: npm test  
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-reports-${{ github.run_number }}
+          path: reports/
+          retention-days: 14
