@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     env:
-      BASE_URL: https://zincbank.cydeo.io
+      BASE_URL: https://zincbank.cydeo.io/login
       ZINCTM_BASE_URL: https://zinctm.cydeo.io
       BROWSER: chromium
       HEADLESS: "true"
