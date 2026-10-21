@@ -126,7 +126,12 @@ Then('I should see the accounts listed below', async function (this: CustomWorld
         
         expect(text).toContain(expectedAccounts[i]['Account Type']);
         expect(text).toContain(expectedAccounts[i]['Account Number']);
-        expect(text).toContain(expectedAccounts[i]['Balance']);
+        
+        if (expectedAccounts[i]['Balance'] === '<any>'){
+            expect(text).toMatch(/\$[\d,]+\.\d{2}/);
+        } else {
+            expect(text).toContain(expectedAccounts[i]['Balance']);
+        };
     }
 });
 

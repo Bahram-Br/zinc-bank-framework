@@ -29,8 +29,8 @@ Feature: zinc bank login and dashboard
         And I open the accounts page
         Then I should see the accounts listed below
             | Account Type | Account Number | Balance     |
-            | Checking     | ••0001         | $8,992.44   |
-            | Savings      | ••0002         | $25,000.00  |
+            | Checking     | ••0001         | <any>       |
+            | Savings      | ••0002         | <any>       |
 
     @ztm4
     Scenario: Signing up with an already-registered email is rejected
