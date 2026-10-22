@@ -6,6 +6,7 @@ import { ZincBankLoginPage } from "../../src/pages/ZincBankLoginPage";
 import { ZincBankDashboardPage } from "../../src/pages/ZincBankDashboardPage";
 import { ZincBankMoveMoneyPage } from "../../src/pages/ZincBankMoveMoneyPage";
 import { ZincBankApplyPage } from "../../src/pages/ZincBankApplyPage";
+import { ZincBankAccountsPage } from "../../src/pages/ZincBankAccountsPage";
 
 Given("I am on the zinc bank login page", async function (this: CustomWorld) {
     const loginPage = new ZincBankLoginPage(this.page);
@@ -110,14 +111,15 @@ Then('I should see the checking account balance and the savings account balance 
 
 // ZTM8: Listed owned accounts are correct
 When('I open the accounts page', async function (this: CustomWorld) {
-    const moveMoneyPage = new ZincBankMoveMoneyPage(this.page);
-    this.zincBankMoveMoneyPage = moveMoneyPage;
-    await this.zincBankMoveMoneyPage.clickAccounts();
+
+    const accountsPage = new ZincBankAccountsPage(this.page);
+    this.zincBankAccountsPage = accountsPage;
+    await this.zincBankAccountsPage.clickNavAccounts();
 });
 
 Then('I should see the accounts listed below', async function (this: CustomWorld, dataTable: DataTable) {
     const expectedAccounts = dataTable.hashes();
-    const actualAccounts = this.page.locator('[data-testid^="accounts-card-"]');
+    const actualAccounts = this.zincBankAccountsPage.accountCards;
     
     await expect(actualAccounts).toHaveCount(expectedAccounts.length);
 
