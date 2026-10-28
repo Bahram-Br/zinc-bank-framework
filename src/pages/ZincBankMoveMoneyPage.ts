@@ -2,6 +2,7 @@ import {Locator, Page} from "@playwright/test";
 
 
 export class ZincBankMoveMoneyPage {
+    readonly moveMoneyPageTitle: Locator;
     readonly moveMoneyButton: Locator;
     readonly checkingAccount: Locator;
     readonly savingsAccount: Locator;
@@ -14,6 +15,7 @@ export class ZincBankMoveMoneyPage {
 
     constructor(readonly page: Page) {
 
+        this.moveMoneyPageTitle = this.page.locator('h1', {hasText: 'Move Money'});
         this.moveMoneyButton = this.page.locator('[data-testid="nav-move-money"]');
         this.checkingAccount = this.page.locator('[data-testid^="accounts-card-"]', { hasText: 'Checking' });
         this.savingsAccount = this.page.locator('[data-testid^="accounts-card-"]', { hasText: 'Savings' });

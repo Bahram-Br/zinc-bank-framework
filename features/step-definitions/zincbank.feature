@@ -38,3 +38,10 @@ Feature: zinc bank login and dashboard
         When I sign up as "Casey" "Zinc" with the registered Casey email and password "NewPassw0rd!"
         Then I should see an error message indicating the email is already registered
         And I should still be on the sign-up page
+
+    @ztm9
+    Scenario: Dashboard "Move Money" shortcut opens the Move Money page
+        Given I am on the zinc bank login page
+        When I login to zinc bank with valid credentials
+        And I click Move Money button on dashboard
+        Then I should see Move Money page

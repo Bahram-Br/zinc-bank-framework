@@ -193,3 +193,21 @@ Then('I should still be on the sign-up page', async function (this: CustomWorld)
     expect(currentUrl).toContain('/apply');
     
 });
+
+// ZTM-9: Dashboard "Move Money" shortcut opens the Move Money page
+
+When('I click Move Money button on dashboard', async function (this: CustomWorld) {
+
+    const dashboardPage = new ZincBankDashboardPage(this.page);
+    this.zincBankDashboardPage = dashboardPage;
+    await this.zincBankDashboardPage.clickMoveMoneyButton();
+});
+
+Then('I should see Move Money page', async function (this: CustomWorld){
+
+    const moveMoneyPage = new ZincBankMoveMoneyPage(this.page);
+    this.zincBankMoveMoneyPage = moveMoneyPage;
+
+    await expect(this.page).toHaveURL(/.*move-money/);
+    await expect(this.zincBankMoveMoneyPage.moveMoneyPageTitle).toBeVisible();
+});
