@@ -211,3 +211,30 @@ Then('I should see Move Money page', async function (this: CustomWorld){
     await expect(this.page).toHaveURL(/.*move-money/);
     await expect(this.zincBankMoveMoneyPage.moveMoneyPageTitle).toBeVisible();
 });
+
+//ZTM-10: Dashboard total balance equals the sum of all account balances 
+Then('the total balance should equal the sum of all account balances', async function (this: CustomWorld) {
+  
+    const dashboardPage = new ZincBankDashboardPage(this.page);
+    this.zincBankDashboardPage = dashboardPage;
+
+    const accountCards = this.zincBankDashboardPage.accountCards;
+    await expect(accountCards.first()).toBeVisible();
+    const count = await accountCards.count();
+    let sum = 0;
+    for(let i =0; i < count; i++) {
+        const balanceText = await accountCards.nth(i).locator('span').last().textContent();
+
+        const balance = Number((balanceText ?? '').replace('$', '').replaceAll(',', ''));
+
+        sum += balance;
+    }
+
+    console.log(sum);
+
+    const totalText = await this.zincBankDashboardPage.totalDepositBalanece.textContent();
+    const total = Number((totalText ?? '').replace('$', '').replaceAll(',', ''));
+
+    expect(sum).toBe(total);
+    
+});
