@@ -1,5 +1,4 @@
 # Simple CI: install dependencies, then type-check.
-# No browser tests, no secrets, and no live site.
 name: CI
 
 on:

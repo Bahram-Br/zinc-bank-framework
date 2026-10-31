@@ -32,13 +32,14 @@ screenshots/*
 .DS_Store
 Thumbs.db
 Desktop.ini
+.playwright-mcp/
+Microsoft/
+.idea/
+reports-dryrun.json
 
 # Logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.playwright-mcp/
-Microsoft/
-.idea/
-reports-dryrun.json
+
