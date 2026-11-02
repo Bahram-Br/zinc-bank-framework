@@ -14,6 +14,7 @@ module.exports = {
       'progress-bar',
       'html:reports/cucumber-report.html',
       'json:reports/cucumber-report.json',
+      'allure-cucumberjs/reporter',
     ],
     // Do not prompt to publish reports to Cucumber cloud.
     publishQuiet: true,

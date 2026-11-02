@@ -32,9 +32,7 @@ screenshots/*
 .DS_Store
 Thumbs.db
 Desktop.ini
-.playwright-mcp/
 Microsoft/
-.idea/
 reports-dryrun.json
 
 # Logs
