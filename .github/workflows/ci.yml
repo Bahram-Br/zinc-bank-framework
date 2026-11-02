@@ -22,8 +22,6 @@ jobs:
       TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
       ZINCTM_USERNAME: ${{ secrets.ZINCTM_USERNAME }}
       ZINCTM_PASSWORD: ${{ secrets.ZINCTM_PASSWORD }}
-      OWNER_USERNAME: ${{ secrets.OWNER_USERNAME }}
-      OWNER_PASSWORD: ${{ secrets.OWNER_PASSWORD }}
     steps:
       - name: Check out the code
         uses: actions/checkout@v4

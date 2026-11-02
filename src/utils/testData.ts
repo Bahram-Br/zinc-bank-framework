@@ -21,7 +21,7 @@ function requiredEnv(name: string): string {
  * credentials are never hardcoded in the framework and never committed to Git.
  */
 export const testData = {
-  // Casey fixture: fixed accounts for ZTM8 and registered email for ZTM4.
+  // Personal test account used by all Zinc Bank scenarios.
   zincBank: {
     get username(): string {
       return requiredEnv('TEST_USERNAME');
@@ -40,15 +40,6 @@ export const testData = {
     },
   },
 
-  // Personal sandbox account used by ZTM1.
-  owner: {
-    get username(): string {
-      return requiredEnv('OWNER_USERNAME');
-    },
-    get password(): string {
-      return requiredEnv('OWNER_PASSWORD');
-    },
-  },
 };
 
 export type TestData = typeof testData;

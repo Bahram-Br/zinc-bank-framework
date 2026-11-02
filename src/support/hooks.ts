@@ -37,6 +37,10 @@ Before(async function (this: CustomWorld): Promise<void> {
  *  - Always close the isolated context.
  */
 After(async function (this: CustomWorld, scenario): Promise<void> {
+
+  const context = this.page.context();
+  const video = this.page.video();
+
   if (scenario.result?.status === 'FAILED') {
     const screenshot = await this.page.screenshot({ fullPage: true });
 
@@ -48,9 +52,24 @@ After(async function (this: CustomWorld, scenario): Promise<void> {
     fs.mkdirSync(dir, { recursive: true });
     const fileName = `failure-${Date.now()}.png`;
     fs.writeFileSync(path.join(dir, fileName), screenshot);
+
+    // Capture a trace of the failed scenario for debugging.
+    const tracePath = `reports/traces/failure-${Date.now()}.zip`;
+    await context.tracing.stop({ path: tracePath });
+  } else {
+    // Stop tracing for successful scenarios, but don't save the trace.
+    await context.tracing.stop();
   }
 
   await closeContext();
+
+  if (video) {
+    const videoPath = await video.path();
+    if (scenario.result?.status === 'FAILED') {
+      await this.attach(fs.readFileSync(videoPath), 'video/webm');
+    }
+    await video.delete();
+  }
 });
 
 /** Close the browser once the whole run has finished. */

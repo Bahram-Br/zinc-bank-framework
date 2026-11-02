@@ -45,7 +45,11 @@ export async function createContextAndPage(): Promise<Page> {
   if (!browser) {
     throw new Error('Browser not launched. Call launchBrowser() first (BeforeAll hook).');
   }
-  context = await browser.newContext();
+  // context = await browser.newContext();
+  // return context.newPage();
+
+  context = await browser.newContext({ recordVideo: { dir: 'reports/videos' } });
+  await context.tracing.start({ screenshots: true, snapshots: true });
   return context.newPage();
 }
 

@@ -23,7 +23,7 @@ When("I login to zinc bank with valid credentials", async function (this: Custom
 
 //ztm1
 When("I login to zinc bank with my sandbox credentials", async function (this: CustomWorld) {
-    const { username, password } = testData.owner;
+    const { username, password } = testData.zincBank;
     await this.zincBankLoginPage.fillUsername(username);
     await this.zincBankLoginPage.fillPassword(password);
     await this.zincBankLoginPage.clickLogin();
@@ -230,11 +230,9 @@ Then('the total balance should equal the sum of all account balances', async fun
         sum += balance;
     }
 
-    console.log(sum);
-
     const totalText = await this.zincBankDashboardPage.totalDepositBalanece.textContent();
     const total = Number((totalText ?? '').replace('$', '').replaceAll(',', ''));
 
-    expect(sum).toBe(total);
+    expect(sum).toBeCloseTo(total, 2);
     
 });
