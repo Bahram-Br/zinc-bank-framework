@@ -37,7 +37,6 @@ For the current Zinc Bank login scenarios:
 | `HEADLESS` | No | Default `true`; set `false` for headed |
 | `ZINCTM_BASE_URL` | No | Defaults in `src/config/config.ts` if empty |
 | `ZINCTM_USERNAME` / `ZINCTM_PASSWORD` | Yes, for `@zinctm` | Fail-fast when that scenario reads them |
-| `OWNER_USERNAME` / `OWNER_PASSWORD` | No | Optional owner account |
 | Variable | Purpose |
 |----------|---------|
 | `VALID_USERNAME` | Valid Zinc Bank login email |
@@ -50,7 +49,6 @@ For the current Zinc Bank login scenarios:
 | `HEADLESS` | `true` (default) or `false` for a visible browser |
 | `ZINCTM_BASE_URL` | ZincTM practice site URL |
 | `ZINCTM_USERNAME` / `ZINCTM_PASSWORD` | ZincTM credentials. Required by `@zinctm`; the scenario throws if either is empty |
-| `OWNER_USERNAME` / `OWNER_PASSWORD` | Optional owner account |
 `.env.example` lists every key with empty placeholders. Real credentials belong only in a local `.env` or CI secret store.
 ## How to run
 ```bash
