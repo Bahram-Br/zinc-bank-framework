@@ -230,7 +230,7 @@ Then('the total balance should equal the sum of all account balances', async fun
         sum += balance;
     }
 
-    const totalText = await this.zincBankDashboardPage.totalDepositBalanece.textContent();
+    const totalText = await this.zincBankDashboardPage.totalDepositBalance.textContent();
     const total = Number((totalText ?? '').replace('$', '').replaceAll(',', ''));
 
     expect(sum).toBeCloseTo(total, 2);
