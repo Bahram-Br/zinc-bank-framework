@@ -17,6 +17,8 @@
     "@cucumber/html-formatter": "^24.1.1",
     "@playwright/test": "^1.62.1",
     "@types/node": "^26.2.0",
+    "allure": "^3.22.1",
+    "allure-cucumberjs": "^3.14.0",
     "cross-env": "^10.1.0",
     "dotenv": "^17.4.2",
     "ts-node": "^10.9.2",
