@@ -1,4 +1,3 @@
-# Simple CI: install dependencies, then type-check.
 name: CI
 
 on:
@@ -45,10 +44,17 @@ jobs:
       - name: Run Cucumber tests
         run: npm test  
 
+      - name: Generate Allure report
+        if: always()
+        run: npx allure generate ./allure-results
+
       - name: Upload reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cucumber-reports-${{ github.run_number }}
-          path: reports/
+          path: | 
+            reports/
+            allure-report/
+            !reports/traces/
           retention-days: 14
