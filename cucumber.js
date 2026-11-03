@@ -11,10 +11,10 @@ module.exports = {
     ],
     // Console + HTML + JSON reporting.
     format: [
-      'progress-bar',
+      'progress',
       'html:reports/cucumber-report.html',
       'json:reports/cucumber-report.json',
-      'allure-cucumberjs/reporter',
+      'allure-cucumberjs/reporter:reports/allure-formatter.txt',
     ],
     // Do not prompt to publish reports to Cucumber cloud.
     publishQuiet: true,

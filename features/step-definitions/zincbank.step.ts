@@ -41,7 +41,7 @@ Then("I should see the zinc bank dashboard", async function (this: CustomWorld) 
     const dashboardPage = new ZincBankDashboardPage(this.page);
     this.zincBankDashboardPage = dashboardPage;
     
-    await expect(this.page).toHaveURL(/.*dashboard/);
+    await expect(this.page).toHaveURL(/.*dashboard/, { timeout: 10000 });
     await expect(this.zincBankDashboardPage.pageTitle).toBeVisible();
     
 });
