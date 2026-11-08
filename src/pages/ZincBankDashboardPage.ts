@@ -5,12 +5,14 @@ export class ZincBankDashboardPage {
     readonly moveMoneyBtn: Locator;
     readonly accountCards: Locator;
     readonly totalDepositBalance: Locator;
+    readonly creditCard: Locator;
 
     constructor(readonly page: Page) {
         this.pageTitle = this.page.locator('[data-testid="dashboard-welcome"]');
         this.moveMoneyBtn = this.page.locator('[data-testid="dashboard-quick-transfer"]');
         this.accountCards = this.page.locator('[data-testid^="dashboard-account-card-"]');
         this.totalDepositBalance = this.page.locator('[data-testid="dashboard-total-deposit"]');
+        this.creditCard = this.page.locator('[data-testid="dashboard-card-summary"]');
         
     }
 

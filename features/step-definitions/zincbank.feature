@@ -51,3 +51,10 @@ Feature: zinc bank login and dashboard
         Given I am on the zinc bank login page
         When I login to zinc bank with valid credentials
         Then the total balance should equal the sum of all account balances
+
+    @ztm24
+    Scenario: Credit card shows on dashboard
+        Given I am on the zinc bank login page
+        When I login to zinc bank with valid credentials
+        Then I should see a credit card listed on the dashboard
+       
