@@ -236,3 +236,11 @@ Then('the total balance should equal the sum of all account balances', async fun
     expect(sum).toBeCloseTo(total, 2);
     
 });
+
+// ZTM-24: Credit card shows on dashboard
+Then('I should see a credit card listed on the dashboard', async function (this: CustomWorld) {
+    const dashboardPage = new ZincBankDashboardPage(this.page);
+    this.zincBankDashboardPage = dashboardPage;
+    await expect(this.zincBankDashboardPage.creditCard).toBeVisible();
+    
+});
