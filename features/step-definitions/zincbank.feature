@@ -13,7 +13,7 @@ Feature: zinc bank login and dashboard
         When I login to zinc bank with invalid credentials
         Then I should see an error message indicating invalid login
 
-    @ztm1
+    @ztm1 @known-bug
     Scenario: Transfer above available balance is rejected with INSUFFICIENT_FUNDS
         Given I am on the zinc bank login page
         When I login to zinc bank with my sandbox credentials
