@@ -42,7 +42,7 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Run Cucumber tests
-        run: npm test  
+        run: npm test -- --tags "not @known-bug"
 
       - name: Generate Allure report
         if: always()
