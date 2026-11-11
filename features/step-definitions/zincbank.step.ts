@@ -7,6 +7,7 @@ import { ZincBankDashboardPage } from "../../src/pages/ZincBankDashboardPage";
 import { ZincBankMoveMoneyPage } from "../../src/pages/ZincBankMoveMoneyPage";
 import { ZincBankApplyPage } from "../../src/pages/ZincBankApplyPage";
 import { ZincBankAccountsPage } from "../../src/pages/ZincBankAccountsPage";
+import { ZincBankCheckingAccountPage } from "../../src/pages/ZincBankCheckingAccountPage";
 
 Given("I am on the zinc bank login page", async function (this: CustomWorld) {
     const loginPage = new ZincBankLoginPage(this.page);
@@ -243,4 +244,20 @@ Then('I should see a credit card listed on the dashboard', async function (this:
     this.zincBankDashboardPage = dashboardPage;
     await expect(this.zincBankDashboardPage.creditCard).toBeVisible();
     
+});
+
+// ZTM-7: Account detail shows payment details
+When('I open the account detail page for the checking account', async function (this: CustomWorld) {
+    const accountsPage = new ZincBankAccountsPage(this.page);
+    this.zincBankAccountsPage = accountsPage;
+    await accountsPage.clickNavAccounts();
+    await accountsPage.clickCheckingAccount();
+});
+
+Then('I should see the payment details for the checking account', async function (this: CustomWorld) {
+    const checkingAccountPage = new ZincBankCheckingAccountPage(this.page);
+    this.zincBankCheckingAccountPage = checkingAccountPage;
+    await expect(this.zincBankCheckingAccountPage.accountNumber).toBeVisible();
+    await expect(this.zincBankCheckingAccountPage.routingNumber).toContainText('123456780');
+
 });

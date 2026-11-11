@@ -7,9 +7,14 @@ export class ZincBankAccountsPage {
     constructor(readonly page: Page) {
         this.accountsNavLink = this.page.locator('[data-testid="nav-accounts"]');
         this.accountCards = this.page.locator('[data-testid^="accounts-card-"]');
+        
     }
 
     async clickNavAccounts(): Promise<void> {
         await this.accountsNavLink.click();
+    }
+
+    async clickCheckingAccount(): Promise<void> {
+        await this.accountCards.filter({ hasText: 'Checking' }).click();
     }
 }

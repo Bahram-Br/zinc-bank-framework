@@ -57,4 +57,11 @@ Feature: zinc bank login and dashboard
         Given I am on the zinc bank login page
         When I login to zinc bank with valid credentials
         Then I should see a credit card listed on the dashboard
-       
+
+    @ztm7
+    Scenario: Account detail shows payment details
+        Given I am on the zinc bank login page
+        When I login to zinc bank with valid credentials
+        And I open the account detail page for the checking account
+        Then I should see the payment details for the checking account
+    
