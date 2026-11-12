@@ -271,3 +271,55 @@ Then('I should see at least one recent activity listed on the dashboard', async 
     await expect(this.zincBankDashboardPage.activities).not.toHaveCount(0);
     
 });
+
+// ZTM-2: Sign up with valid details creates a ready-to-use account  
+When('I sign up with a unique email and valid user details', async function (this: CustomWorld) {
+    const zincBankApplyPage = new ZincBankApplyPage(this.page);
+    this.zincBankApplyPage = zincBankApplyPage;
+
+    await zincBankApplyPage.selectCheckingAccountOption();
+    await zincBankApplyPage.selectSavingsAccountOption();
+    await zincBankApplyPage.clickContinue();
+
+    await zincBankApplyPage.fillFirstName('ZTM2');
+    await zincBankApplyPage.fillLastName('Test');
+
+    const email = `ztm2.${Date.now()}@zinc.com`;
+    await zincBankApplyPage.fillEmail(email);
+
+    await zincBankApplyPage.clickContinue();
+
+    await zincBankApplyPage.fillSsnNum();
+    await zincBankApplyPage.selfEmployeeOption();
+    await zincBankApplyPage.clickContinue();
+
+    await zincBankApplyPage.fillStreetInput('123 Main St');
+    await zincBankApplyPage.fillCityInput('Anytown');
+    await zincBankApplyPage.selectStateOption('CA');
+    await zincBankApplyPage.fillZipcodeInput('12345');
+    await zincBankApplyPage.clickContinue();
+
+    const password = 'Ztm2TestPassword!';
+    await zincBankApplyPage.fillNewPassword(password);
+    await zincBankApplyPage.confirmNewPassword(password);
+    await zincBankApplyPage.clickContinue();    
+
+    await zincBankApplyPage.clickTermsCheckbox();
+    await zincBankApplyPage.clickSubmit();
+
+    await zincBankApplyPage.clickGotoDashboardBtn();
+
+
+});
+
+Then('I should see a Checking account and a Savings account are visible, each with a $0.00 balance.', async function (this: CustomWorld) {
+    const accountsPage = new ZincBankDashboardPage(this.page);
+    this.zincBankDashboardPage = accountsPage;
+
+    await expect(accountsPage.accountCards.filter({ hasText: 'Checking' })).toBeVisible();
+    await expect(accountsPage.accountCards.filter({ hasText: 'Savings' })).toBeVisible();
+    
+    await expect(accountsPage.accountCards.filter({ hasText: 'Checking' }).locator('span').last()).toHaveText('$0.00');
+    await expect(accountsPage.accountCards.filter({ hasText: 'Savings' }).locator('span').last()).toHaveText('$0.00');
+    
+});

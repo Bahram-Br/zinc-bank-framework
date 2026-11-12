@@ -6,6 +6,8 @@ export class ZincBankApplyPage {
     readonly firstNameInput: Locator;
     readonly lastNameInput: Locator;
     readonly emailInput: Locator;
+    readonly checkingAccountOption: Locator;
+    readonly savingsAccountOption: Locator;
     readonly continueButton: Locator;
     readonly submitButton: Locator;
     readonly passwordInput: Locator;
@@ -17,6 +19,7 @@ export class ZincBankApplyPage {
     readonly statOption: Locator;
     readonly zipcodeInput: Locator;
     readonly termsCheckbox: Locator;
+    readonly gotoDashboardBtn: Locator;
 
     constructor(readonly page: Page) {
         this.firstNameInput = this.page.locator('[data-testid="apply-firstname-input"]');
@@ -24,6 +27,8 @@ export class ZincBankApplyPage {
         this.emailInput = this.page.locator('[data-testid="apply-email-input"]');
         this.passwordInput = this.page.locator('[data-testid="apply-password-input"]')
         this.confirmPassword = this.page.locator('[data-testid="apply-confirm-input"]')
+        this.checkingAccountOption = this.page.locator('[data-testid="apply-step-0"]');
+        this.savingsAccountOption = this.page.locator('[data-testid="apply-account-savings-toggle"]');
         this.continueButton = this.page.locator('[data-testid="apply-next"]');
         this.submitButton = this.page.locator('[data-testid="apply-submit"]');
         this.ssnNumInput = this.page.locator('[data-testid="apply-ssn-input"]');
@@ -33,11 +38,21 @@ export class ZincBankApplyPage {
         this.statOption = this.page.locator('[data-testid="apply-state-select"]');
         this.zipcodeInput = this.page.locator('[data-testid="apply-zip-input"]');
         this.termsCheckbox = this.page.locator('[data-testid="apply-terms-checkbox"]');
+        this.gotoDashboardBtn = this.page.locator('[data-testid="apply-decision-continue"]');
+
     }
 
     async goto(): Promise<void> {
         const original = new URL(config.zincBankBaseURL).origin;
         await this.page.goto(`${original}/apply`);
+    }
+
+    async selectCheckingAccountOption(): Promise<void> {
+        await this.checkingAccountOption.getByRole('checkbox', { name: 'Checking account (always included)' }).check();
+    }
+
+    async selectSavingsAccountOption(): Promise<void> {
+        await this.savingsAccountOption.check();
     }
 
     async fillFirstName(firstName: string): Promise<void> {
@@ -94,6 +109,11 @@ export class ZincBankApplyPage {
 
     async clickTermsCheckbox(): Promise<void> {
         await this.termsCheckbox.click();
+    }
+
+    async clickGotoDashboardBtn(): Promise<void> {
+        await expect(this.gotoDashboardBtn).toBeVisible();
+        await this.gotoDashboardBtn.click();
     }
 
     async errorMessage(): Promise<string> {
