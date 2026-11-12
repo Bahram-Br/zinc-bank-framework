@@ -261,3 +261,13 @@ Then('I should see the payment details for the checking account', async function
     await expect(this.zincBankCheckingAccountPage.routingNumber).toContainText('123456780');
 
 });
+
+// ZTM-26: Dashboard Recent Activity shows the signed-in user's recent transactions
+Then('I should see at least one recent activity listed on the dashboard', async function (this: CustomWorld) {
+    const dashboardPage = new ZincBankDashboardPage(this.page);
+    this.zincBankDashboardPage = dashboardPage;
+
+    await expect(this.zincBankDashboardPage.recentActivitySection).toBeVisible();
+    await expect(this.zincBankDashboardPage.activities).not.toHaveCount(0);
+    
+});
