@@ -70,4 +70,11 @@ Feature: zinc bank login and dashboard
         Given I am on the zinc bank login page
         When I login to zinc bank with valid credentials
         Then I should see at least one recent activity listed on the dashboard
+
+    @ztm2 
+    Scenario: Sign up with valid details creates a ready-to-use account
+        Given I am on the zinc bank sign-up page
+        When I sign up with a unique email and valid user details
+        Then I should see the zinc bank dashboard
+        And I should see a Checking account and a Savings account are visible, each with a $0.00 balance.
         
