@@ -65,3 +65,9 @@ Feature: zinc bank login and dashboard
         And I open the account detail page for the checking account
         Then I should see the payment details for the checking account
     
+    @ztm26
+    Scenario: Dashboard Recent Activity shows the signed-in user's recent transactions
+        Given I am on the zinc bank login page
+        When I login to zinc bank with valid credentials
+        Then I should see at least one recent activity listed on the dashboard
+        

@@ -6,6 +6,8 @@ export class ZincBankDashboardPage {
     readonly accountCards: Locator;
     readonly totalDepositBalance: Locator;
     readonly creditCard: Locator;
+    readonly recentActivitySection: Locator;
+    readonly activities: Locator;
 
     constructor(readonly page: Page) {
         this.pageTitle = this.page.locator('[data-testid="dashboard-welcome"]');
@@ -13,6 +15,8 @@ export class ZincBankDashboardPage {
         this.accountCards = this.page.locator('[data-testid^="dashboard-account-card-"]');
         this.totalDepositBalance = this.page.locator('[data-testid="dashboard-total-deposit"]');
         this.creditCard = this.page.locator('[data-testid="dashboard-card-summary"]');
+        this.recentActivitySection = this.page.locator('[data-testid="dashboard-recent-activity"]');
+        this.activities = this.page.locator('[data-testid^="txn-row-"]');
         
     }
 
