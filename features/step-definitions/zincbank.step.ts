@@ -323,3 +323,24 @@ Then('I should see a Checking account and a Savings account are visible, each wi
     await expect(accountsPage.accountCards.filter({ hasText: 'Savings' }).locator('span').last()).toHaveText('$0.00');
     
 });
+
+// ZTM-27: Signed-in customer can open an additional savings account
+When('I click {string} button', async function (this: CustomWorld, buttonName: string) {
+    const accountsPage = new ZincBankAccountsPage(this.page);
+    this.zincBankAccountsPage = accountsPage;
+
+    if (buttonName === 'Open savings account') {
+        return await accountsPage.clickOpenSavingsAccountButton();
+    } else {
+        throw new Error(`Button "${buttonName}" is not handled in this step definition.`);
+    }
+});
+
+Then('I should see 3 accounts and the new account is a Savings account', async function (this: CustomWorld) {
+    const accountsPage = new ZincBankAccountsPage(this.page);
+    this.zincBankAccountsPage = accountsPage;
+
+    await expect(accountsPage.accountCards.filter({ hasText: 'Savings' })).toHaveCount(2);
+    await expect(accountsPage.accountCards).toHaveCount(3);
+    
+});

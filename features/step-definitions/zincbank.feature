@@ -79,3 +79,10 @@ Feature: zinc bank login and dashboard
         Then I should see the zinc bank dashboard
         And I should see a Checking account and a Savings account are visible, each with a $0.00 balance.
         
+    @ztm27
+    Scenario: Signed-in customer can open an additional savings account
+        Given I am on the zinc bank sign-up page
+        When I sign up with a unique email and valid user details
+        And I open the accounts page
+        And I click "Open savings account" button
+        Then I should see 3 accounts and the new account is a Savings account
