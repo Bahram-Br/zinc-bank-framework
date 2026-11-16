@@ -46,7 +46,7 @@ Feature: zinc bank login and dashboard
         And I click Move Money button on dashboard
         Then I should see Move Money page
 
-    @ztm10
+    @ztm10 @smoke
     Scenario: Dashboard total balance equals the sum of all account balances
         Given I am on the zinc bank login page
         When I login to zinc bank with valid credentials
