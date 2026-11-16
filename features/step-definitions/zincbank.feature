@@ -31,6 +31,7 @@ Feature: zinc bank login and dashboard
             | Account Type | Account Number | Balance     |
             | Checking     | ••2439         | <any>       |
             | Savings      | ••2440         | <any>       |
+            | Savings      | ••4325         | <any>       |
 
     @ztm4
     Scenario: Signing up with an already-registered email is rejected
