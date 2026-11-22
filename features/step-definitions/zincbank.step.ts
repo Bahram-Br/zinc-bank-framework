@@ -259,6 +259,8 @@ Then('I should see the payment details for the checking account', async function
     this.zincBankCheckingAccountPage = checkingAccountPage;
     await expect(this.zincBankCheckingAccountPage.accountNumber).toBeVisible();
     await expect(this.zincBankCheckingAccountPage.routingNumber).toContainText('123456780');
+    await expect(this.zincBankCheckingAccountPage.h1Header).toBeVisible();
+    await expect(this.zincBankCheckingAccountPage.h1Header).toHaveText('Checking');
 
 });
 
