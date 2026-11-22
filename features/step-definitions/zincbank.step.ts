@@ -1,6 +1,6 @@
-import{ Given, When, Then, DataTable } from "@cucumber/cucumber";
+import { Given, When, Then, DataTable } from "@cucumber/cucumber";
 import { expect } from "@playwright/test";
-import{ CustomWorld } from "../../src/support/world";
+import { CustomWorld } from "../../src/support/world";
 import { testData } from "../../src/utils/testData";
 import { ZincBankLoginPage } from "../../src/pages/ZincBankLoginPage";
 import { ZincBankDashboardPage } from "../../src/pages/ZincBankDashboardPage";
@@ -8,6 +8,7 @@ import { ZincBankMoveMoneyPage } from "../../src/pages/ZincBankMoveMoneyPage";
 import { ZincBankApplyPage } from "../../src/pages/ZincBankApplyPage";
 import { ZincBankAccountsPage } from "../../src/pages/ZincBankAccountsPage";
 import { ZincBankCheckingAccountPage } from "../../src/pages/ZincBankCheckingAccountPage";
+import { config } from "../../src/config/config";
 
 Given("I am on the zinc bank login page", async function (this: CustomWorld) {
     const loginPage = new ZincBankLoginPage(this.page);
@@ -346,3 +347,27 @@ Then('I should see 3 accounts and the new account is a Savings account', async f
     await expect(accountsPage.accountCards).toHaveCount(3);
     
 });
+
+// ZTM-29: Signed-in customer cannot see another customer's account
+When('I open another customer\'s account detail URL', async function (this: CustomWorld) {
+    await expect(this.page).toHaveURL(/dashboard/);
+
+    const otherCustomerAccountUrl = new URL(config.zincBankBaseURL).origin + '/accounts/bbb76afe-da2b-49e9-911f-3035c77d4c87';
+    await this.page.goto(otherCustomerAccountUrl);
+});
+
+Then('I should see the 404 page and no account data', async function (this: CustomWorld) {
+    const checkingAccountPage = new ZincBankCheckingAccountPage(this.page);
+    this.zincBankCheckingAccountPage = checkingAccountPage;
+
+    await expect(this.zincBankCheckingAccountPage.display404Message).toBeVisible();
+    await expect(this.zincBankCheckingAccountPage.displayNotFoundMessage).toBeVisible();
+
+    await expect(this.zincBankCheckingAccountPage.accountNumber).not.toBeVisible();
+});
+
+When('I open an account detail URL with a non-existent ID', async function (this: CustomWorld) {
+    const nonExistentCustomerAccountUrl = new URL(config.zincBankBaseURL).origin + '/accounts/bbb76afe-da2b-49e9-911f-3035c77d0000';
+    await this.page.goto(nonExistentCustomerAccountUrl);
+});
+

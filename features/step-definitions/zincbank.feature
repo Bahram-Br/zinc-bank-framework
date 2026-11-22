@@ -86,3 +86,12 @@ Feature: zinc bank login and dashboard
         And I open the accounts page
         And I click "Open savings account" button
         Then I should see 3 accounts and the new account is a Savings account
+
+    @ztm29
+    Scenario: Signed-in customer cannot see another customer's account
+        Given I am on the zinc bank sign-up page
+        When I sign up with a unique email and valid user details
+        And I open another customer's account detail URL
+        Then I should see the 404 page and no account data
+        When I open an account detail URL with a non-existent ID
+        Then I should see the 404 page and no account data
